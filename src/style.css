@@ -1,0 +1,67 @@
+/*eslint no-dupe-keys: "Off"*/
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
+  border-bottom: 2px solid #21bf96 !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected a,
+.ant-menu-horizontal > .ant-menu-item a:hover {
+  color: #21bf96 !important;
+}
+
+.ant-modal-content {
+  overflow: auto;
+  border-radius: 1rem;
+}
+
+.ant-transfer-list-header {
+  background: transparent;
+  color: #fff;
+  border: 0;
+}
+
+.ant-btn-primary {
+  border: none;
+}
+
+.ant-btn:hover {
+  transform: scale(1.05) !important;
+}
+
+.ant-steps-item-title {
+  font-size: 20px;
+  color: white !important;
+}
+
+.ant-steps-item-description {
+  font-size: 14px;
+  color: black !important;
+}
+
+.ant-steps-vertical {
+  padding: 40px;
+  padding-top: 100px;
+  height: 100%;
+  font-size: 12px;
+  color: white;
+}
+
+.ant-spin-dot {
+  font-size: 70px !important;
+}
+
+.ant-spin-dot-item {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.ant-spin-nested-loading {
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
