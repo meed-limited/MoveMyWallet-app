@@ -127,6 +127,7 @@ function WalletMover() {
                     onFinishSelection={() => setDisplayPaneMode("done")}
                     tokenData={tokenData}
                     getAddressFromTransfer={getAddressFromTransfer}
+                    setWaiting={setWaiting}
                   />
                 )}
                 {displayPaneMode === "done" && <Done address={address} />}

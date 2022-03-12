@@ -42,10 +42,9 @@ const styles = {
   }
 };
 
-const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer }) => {
+const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer, setWaiting }) => {
   const { chainId } = useMoralis();
   const [receiverToSend, setReceiver] = useState(null);
-  const [isTransfering, setIsTransfering] = useState(false);
 
   const setAddress = (value) => {
     setReceiver(value);
@@ -53,7 +52,7 @@ const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer }) => {
   };
 
   const handleTransfer = async () => {
-    setIsTransfering(true);
+    setWaiting(true);
 
     const sendOptions = {
       contractAddress: ASSEMBLY_NFT_MUMBAI,
@@ -85,13 +84,13 @@ const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer }) => {
       );
       destroyBackupBundle(tokenData[0])
       openNotification("success", title, msg);
-      setIsTransfering(false);
+      setWaiting(false);
       onFinishSelection();
     } catch (error) {
       let title = "Unexpected error";
       let msg = "Oops, something went wrong while transfering your assets. Please, try again.";
       openNotification("error", title, msg);
-      setIsTransfering(false);
+      setWaiting(false);
       console.log(error);
     }
   };

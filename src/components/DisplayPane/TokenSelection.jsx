@@ -123,7 +123,7 @@ function TokenSelection({ tokensToTransfer, setTokensToTransfer, onFinishSelecti
   return (
     <div style={styles.tokenSelection}>
       <div style={styles.text}>
-        <p>Select Crypto-Tokens to transfer</p>
+        <p>Select Tokens to transfer</p>
       </div>
       {error && <Alert style={{ margin: "20px" }} message={"Unable to fetch user tokens"} type='error' showIcon />}
       <div style={styles.transfer}>

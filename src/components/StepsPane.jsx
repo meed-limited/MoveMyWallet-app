@@ -36,11 +36,11 @@ const StepsPane = ({ tokensToTransfer, NFTsToTransfer, displayPaneMode }) => {
     <div style={styles.pane}>
       <Steps direction='vertical' current={switchStep()}>
         <Step
-          title='Choose tokens to transfer, if any'
+          title='Choose Tokens to transfer, if any'
           description={
             tokensToTransfer
               ? tokensToTransfer.length + " token" + (tokensToTransfer.length !== 1 ? "s" : "") + " selected"
-              : "Click on 'Select Asset' to add some"
+              : "Select some of your ERC20 tokens, or all, or none, and click on OK when you're done."
           }
         />
         <Step
@@ -48,11 +48,11 @@ const StepsPane = ({ tokensToTransfer, NFTsToTransfer, displayPaneMode }) => {
           description={
             NFTsToTransfer
               ? NFTsToTransfer.length + " NFT" + (NFTsToTransfer.length !== 1 ? "s" : "") + " selected"
-              : "Click on 'Select NFTs' to add some"
+              : "Select some of your NFTs, or all, or none, and click on OK when you're done."
           }
         />
-        <Step title='Bundle your assets' description='Pack all your assets in one NFT for a single transaction' />
-        <Step title='Transfer' description='Get all your assets ready and waiting for you on your new wallet' />
+        <Step title='Bundle' description='Pack all your assets in one NFT for a single transaction.' />
+        <Step title='Transfer' description='Get all your assets ready and waiting for you on your new wallet!' />
       </Steps>
     </div>
   );

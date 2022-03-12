@@ -115,7 +115,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
       let link = `${getExplorer(chainId)}tx/${receipt.transactionHash}`;
       let msg = (
         <>
-          Bundle was successfully created
+          Your bundle has been successfully created!
           <br></br>
           <a href={link} target='_blank' rel='noreferrer noopener'>
             View in explorer: &nbsp;
