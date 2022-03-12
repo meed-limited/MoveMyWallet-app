@@ -324,4 +324,8 @@ contract AssemblyNFT is
     {
         feeReceiver = _newFeeReceiver;
     }
+
+    function setTokenURI(string memory _newTokenURI) external onlyOwner {
+        _baseURIextended = _newTokenURI;
+    }
 }
