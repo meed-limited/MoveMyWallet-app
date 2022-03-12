@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Moralis from "moralis";
 import { useMoralis, useNativeBalance } from "react-moralis";
-import { ASSEMBLY_NFT_MUMBAI, ABI } from "../../helpers/constant";
+import { CHAINS_WITH_L3P_SUPPORT, ASSEMBLY_NFT_MUMBAI, ABI } from "../../helpers/constant";
 import { Switch } from "antd";
 
 const styles = {
@@ -14,11 +14,12 @@ const styles = {
   }
 };
 
-const FeeSelector = () => {
+const FeeSelector = ({ setServiceFee }) => {
   const { chainId, isWeb3Enabled } = useMoralis();
   const { nativeToken } = useNativeBalance(chainId);
   const [feeInETH, setFeeinETH] = useState();
   const [feeInL3P, setFeeinL3P] = useState();
+  const onLP3Chain = CHAINS_WITH_L3P_SUPPORT.includes(chainId);
 
   const getFeeinETH = async () => {
     const readOptions = {
@@ -31,6 +32,7 @@ const FeeSelector = () => {
       let feeEth = await Moralis.executeFunction(readOptions);
       feeEth = parseFloat(feeEth) / "1e18";
       setFeeinETH(feeEth);
+      setServiceFee({type: "native", amount: feeEth}) //initialisation
     } catch (error) {
       console.log(error);
     }
@@ -59,14 +61,24 @@ const FeeSelector = () => {
     }
   }, [isWeb3Enabled]);
 
+  
+
+  const onSwitchChange = (checked) => {
+    if(checked) {
+      setServiceFee({type: "L3P", amount: feeInL3P})
+    } else {
+      setServiceFee({type: "native", amount: feeInETH})
+    }
+  }
+
   return (
     <>
       <div style={{ width: "90%", textAlign: "center", margin: "30px auto 0 auto" }}>
         <label style={{ fontWeight: 600, fontSize: "20px" }}>Service fees payment options:</label>
       </div>
       <div style={styles.feeSelection}>
-        {feeInETH} {nativeToken?.name}
-        <Switch style={{ margin: "0 15px", padding: "0 10px" }}></Switch>
+        {feeInETH} {nativeToken?.symbol}
+        <Switch onChange={onSwitchChange} disabled={!onLP3Chain} style={{ margin: "0 15px", padding: "0 10px" }}></Switch>
         {feeInL3P} L3P
       </div>
     </>

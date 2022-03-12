@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Moralis } from "moralis";
 import { useMoralis } from "react-moralis";
 import { ASSEMBLY_NFT_MUMBAI, ABI } from "helpers/constant";
@@ -55,6 +56,7 @@ const styles = {
 
 const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting, onFinishSelection, onReset }) => {
   const { chainId, account } = useMoralis();
+  const [ serviceFee, setServiceFee ] = useState();
   const ethers = require("ethers");
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const contract = new ethers.Contract(ASSEMBLY_NFT_MUMBAI, ABI.abi, provider);
@@ -83,7 +85,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     return {
       addressesArray: addresses,
       numbersArray: numbers,
-      nativeAmount: String(0.01 * "1e18")
+      nativeAmount: serviceFee.type==="native" ? serviceFee.amount * ("1e18") : 0
     };
   };
 
@@ -147,7 +149,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
   return (
     <div style={styles.container}>
       <div style={styles.bundlePane}>
-        <FeeSelector />
+        <FeeSelector setServiceFee={setServiceFee}/>
 
         <div style={styles.buttonDiv}>
           <Button style={styles.bundleButton} shape='round' onClick={executeBundle}>

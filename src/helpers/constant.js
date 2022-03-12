@@ -2,6 +2,9 @@ export const ASSEMBLY_NFT_ETHEREUM = "";
 export const ASSEMBLY_NFT_BSC = "";
 export const ASSEMBLY_NFT_POLYGON = "";
 export const ASSEMBLY_NFT_MUMBAI = "0x35539B03dC1D9dC7ED368A9BF993cDAb2c4e4f69";
+
+export const CHAINS_WITH_L3P_SUPPORT = [ "0x1", "0x38"];
+
 export const ABI = {
   contractName: "AssemblyNFT",
   abi: [
