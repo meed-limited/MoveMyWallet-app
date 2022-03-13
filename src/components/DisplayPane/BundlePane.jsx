@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Moralis } from "moralis";
 import { useMoralis } from "react-moralis";
-import { ASSEMBLY_NFT_MUMBAI, ABI } from "helpers/constant";
+import { L3P_TOKEN_ADDRESS, ABI, getContractAddress } from "helpers/constant";
 import cloneDeep from "lodash/cloneDeep";
 import FeeSelector from "components/DisplayPane/FeeSelector";
-import { approveAll } from "helpers/approval";
+import { checkERC20allowance, approveERC20contract, approveAll } from "helpers/approval";
 import { saveBackupBundle } from "helpers/findBackupBundle";
 import { openNotification } from "helpers/notifications";
 import { getExplorer } from "helpers/networks";
@@ -56,10 +56,11 @@ const styles = {
 
 const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting, onFinishSelection, onReset }) => {
   const { chainId, account } = useMoralis();
-  const [ serviceFee, setServiceFee ] = useState();
+  const [serviceFee, setServiceFee] = useState();
+  const contractAddress = getContractAddress(chainId);
   const ethers = require("ethers");
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(ASSEMBLY_NFT_MUMBAI, ABI.abi, provider);
+  const contract = new ethers.Contract(contractAddress, ABI.abi, provider);
 
   const sortArrayForBundle = () => {
     const addresses = [];
@@ -85,12 +86,19 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     return {
       addressesArray: addresses,
       numbersArray: numbers,
-      nativeAmount: serviceFee.type==="native" ? serviceFee.amount * ("1e18") : 0
+      nativeAmount: serviceFee.type === "native" ? serviceFee.amount * "1e18" : 0
     };
   };
 
+  const ifServiceFeeInL3P = async () => {
+    const currentAllowance = await checkERC20allowance(account, L3P_TOKEN_ADDRESS, contractAddress);
+    if (currentAllowance < serviceFee.amount) {
+      approveERC20contract(L3P_TOKEN_ADDRESS, serviceFee.amount, contractAddress);
+    }
+  };
+
   const bundleOptions = (addresses, numbers, nativeAmount) => ({
-    contractAddress: ASSEMBLY_NFT_MUMBAI,
+    contractAddress: contractAddress,
     functionName: "mint",
     abi: ABI.abi,
     params: {
@@ -105,9 +113,14 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     setWaiting(true);
     const { addressesArray, numbersArray, nativeAmount } = sortArrayForBundle();
     const clonedArray = cloneDeep(addressesArray);
-    await approveAll(clonedArray, numbersArray, account, ASSEMBLY_NFT_MUMBAI);
+    await approveAll(clonedArray, numbersArray, account, contractAddress);
 
     const sendOptions = bundleOptions(addressesArray, numbersArray, nativeAmount);
+
+    if (serviceFee.type === "L3P") {
+      await ifServiceFeeInL3P();
+    }
+
     try {
       eventListener(addressesArray, numbersArray);
       const transaction = await Moralis.executeFunction(sendOptions);
@@ -149,7 +162,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
   return (
     <div style={styles.container}>
       <div style={styles.bundlePane}>
-        <FeeSelector setServiceFee={setServiceFee}/>
+        <FeeSelector setServiceFee={setServiceFee} />
 
         <div style={styles.buttonDiv}>
           <Button style={styles.bundleButton} shape='round' onClick={executeBundle}>

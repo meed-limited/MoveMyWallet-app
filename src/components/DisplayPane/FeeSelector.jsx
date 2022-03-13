@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Moralis from "moralis";
 import { useMoralis, useNativeBalance } from "react-moralis";
-import { CHAINS_WITH_L3P_SUPPORT, ASSEMBLY_NFT_MUMBAI, ABI } from "../../helpers/constant";
-import { Switch } from "antd";
+import { CHAINS_WITH_L3P_SUPPORT, ABI, getContractAddress } from "../../helpers/constant";
+import { menuItems } from "../Chains/Chains";
+import { Alert, Switch } from "antd";
 
 const styles = {
   feeSelection: {
@@ -15,15 +16,16 @@ const styles = {
 };
 
 const FeeSelector = ({ setServiceFee }) => {
-  const { chainId, isWeb3Enabled } = useMoralis();
+  const { chainId, isWeb3Enabled, network } = useMoralis();
   const { nativeToken } = useNativeBalance(chainId);
+  const contractAddress = getContractAddress(chainId);
   const [feeInETH, setFeeinETH] = useState();
   const [feeInL3P, setFeeinL3P] = useState();
   const onLP3Chain = CHAINS_WITH_L3P_SUPPORT.includes(chainId);
 
   const getFeeinETH = async () => {
     const readOptions = {
-      contractAddress: ASSEMBLY_NFT_MUMBAI,
+      contractAddress: contractAddress,
       functionName: "feeETH",
       abi: ABI.abi
     };
@@ -32,7 +34,7 @@ const FeeSelector = ({ setServiceFee }) => {
       let feeEth = await Moralis.executeFunction(readOptions);
       feeEth = parseFloat(feeEth) / "1e18";
       setFeeinETH(feeEth);
-      setServiceFee({type: "native", amount: feeEth}) //initialisation
+      setServiceFee({ type: "native", amount: feeEth }); //initialisation
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +42,7 @@ const FeeSelector = ({ setServiceFee }) => {
 
   const getFeeinL3P = async () => {
     const readOptions = {
-      contractAddress: ASSEMBLY_NFT_MUMBAI,
+      contractAddress: contractAddress,
       functionName: "feeL3P",
       abi: ABI.abi
     };
@@ -61,15 +63,15 @@ const FeeSelector = ({ setServiceFee }) => {
     }
   }, [isWeb3Enabled]);
 
-  
-
   const onSwitchChange = (checked) => {
-    if(checked) {
-      setServiceFee({type: "L3P", amount: feeInL3P})
+    if (checked) {
+      setServiceFee({ type: "L3P", amount: feeInL3P });
     } else {
-      setServiceFee({type: "native", amount: feeInETH})
+      setServiceFee({ type: "native", amount: feeInETH });
     }
-  }
+  };
+
+  const chainName = menuItems.filter((name) => name.key === chainId)[0].value;
 
   return (
     <>
@@ -78,9 +80,21 @@ const FeeSelector = ({ setServiceFee }) => {
       </div>
       <div style={styles.feeSelection}>
         {feeInETH} {nativeToken?.symbol}
-        <Switch onChange={onSwitchChange} disabled={!onLP3Chain} style={{ margin: "0 15px", padding: "0 10px" }}></Switch>
+        <Switch
+          onChange={onSwitchChange}
+          disabled={!onLP3Chain}
+          style={{ margin: "0 15px", padding: "0 10px" }}
+        ></Switch>
         {feeInL3P} L3P
       </div>
+      {!onLP3Chain && (
+        <Alert
+          type='info'
+          closable={true}
+          showIcon
+          message={`L3P payment is not available on ${chainName} yet.`}
+        />
+      )}
     </>
   );
 };

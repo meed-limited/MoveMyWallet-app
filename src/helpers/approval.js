@@ -94,6 +94,25 @@ export const approveNFTcontract = async (NFTaddress, contractAddress) => {
   }
 };
 
+export const checkERC20allowance = async (_owner, ERC20address, contractAddress) => {
+  const readOptions = {
+    contractAddress: ERC20address,
+    functionName: "allowance",
+    abi: allowanceABI,
+    params: {
+      owner: _owner,
+      spender: contractAddress
+    }
+  };
+
+  try {
+    const res = await Moralis.executeFunction(readOptions);
+    return res.toString();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Check existing approval for an array of assets (tokens & NFTs), return an array
 export const checkMultipleAssetsApproval = async (addresses, numbers, walletAddress, contractAddress) => {
   const clonedAddresses = cloneDeep(addresses);

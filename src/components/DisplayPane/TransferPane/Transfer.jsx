@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
-import { ASSEMBLY_NFT_MUMBAI, ABI } from "helpers/constant";
+import { getContractAddress, ABI } from "helpers/constant";
 import AddressInput from "./AddressInput";
 import { destroyBackupBundle } from "helpers/findBackupBundle";
 import { openNotification } from "helpers/notifications";
@@ -45,6 +45,7 @@ const styles = {
 const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer, setWaiting }) => {
   const { chainId } = useMoralis();
   const [receiverToSend, setReceiver] = useState(null);
+  const contractAddress = getContractAddress(chainId);
 
   const setAddress = (value) => {
     setReceiver(value);
@@ -55,7 +56,7 @@ const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer, setWai
     setWaiting(true);
 
     const sendOptions = {
-      contractAddress: ASSEMBLY_NFT_MUMBAI,
+      contractAddress: contractAddress,
       functionName: "burn",
       abi: ABI.abi,
       params: {
@@ -71,7 +72,7 @@ const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer, setWai
       const transaction = await Moralis.executeFunction(sendOptions);
       const receipt = await transaction.wait();
       let link = `${getExplorer(chainId)}tx/${receipt.transactionHash}`;
-      let title = "Pack claimed!";
+      let title = "Assets unpacked!";
       let msg = (
         <>
           Your assets has been succesfully transfered!

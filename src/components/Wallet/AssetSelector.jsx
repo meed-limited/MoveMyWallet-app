@@ -31,7 +31,6 @@ export default function AssetSelector({ setAsset, style }) {
     <Select onChange={handleChange} size="large" style={style}>
       {fullBalance &&
         fullBalance.map((item) => {
-          console.log(item);
           return (
             <Select.Option
               value={item["token_address"]}

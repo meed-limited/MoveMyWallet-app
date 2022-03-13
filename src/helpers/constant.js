@@ -1,9 +1,23 @@
+// Insert your smart-contract addresses here:
 export const ASSEMBLY_NFT_ETHEREUM = "";
 export const ASSEMBLY_NFT_BSC = "";
 export const ASSEMBLY_NFT_POLYGON = "";
 export const ASSEMBLY_NFT_MUMBAI = "0x35539B03dC1D9dC7ED368A9BF993cDAb2c4e4f69";
 
+export const getContractAddress = (chainId) => {
+  if (chainId === "0x1") {
+    return ASSEMBLY_NFT_ETHEREUM;
+  } else if (chainId === "0x89") {
+    return ASSEMBLY_NFT_POLYGON;
+  } else if (chainId === "0x38") {
+    return ASSEMBLY_NFT_BSC;
+  } else if (chainId === "0x13881") {
+    return ASSEMBLY_NFT_MUMBAI;
+  }
+};
+
 export const CHAINS_WITH_L3P_SUPPORT = [ "0x1", "0x38"];
+export const L3P_TOKEN_ADDRESS = "0xdeF1da03061DDd2A5Ef6c59220C135dec623116d";
 
 export const ABI = {
   contractName: "AssemblyNFT",
