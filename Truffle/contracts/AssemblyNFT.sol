@@ -39,10 +39,10 @@ contract AssemblyNFT is
             ERC1155Receiver.supportsInterface(interfaceId);
     }
 
-    address private L3P = 0xdeF1da03061DDd2A5Ef6c59220C135dec623116d; // L3P contract address;
-    address payable private feeReceiver;
-    uint256 public feeETH = 0.01 ether; // Fees charged on TXs
-    uint256 public feeL3P = 100; // Fees charged on TXs
+    address private L3P = 0xdeF1da03061DDd2A5Ef6c59220C135dec623116d; // L3P contract address (only available on Ethereum && BSC);
+    address payable private feeReceiver; // 
+    uint256 public feeETH = 0.01 ether; // Fees charged on TXs, if paid in native (ETH, MATIC, BNB)
+    uint256 public feeL3P = 100; // Fees charged on TXs, if paid in L3P
     uint256 nonce;
     string public _baseURIextended;
 
@@ -71,7 +71,7 @@ contract AssemblyNFT is
 
     /**
     @dev Generate a hash of all assets sent to the escrow contract. This hash is used as token_id and is the "key" to claim the assets back.
-    @param _salt Index-like parameter incremented by one with each new created NFT. 
+    @param _salt Index-like parameter incremented by one with each new created NFT to prevent collision. 
     @param _addresses Array containing all the contract addresses of every assets sent to the escrow contract. See layout below.
     @param _numbers Array containing numbers, amounts and IDs for every assets sent to the escrow contract. See layout below.
     
@@ -118,10 +118,12 @@ contract AssemblyNFT is
             );
             (bool feeInEth, ) = feeReceiver.call{value: feeETH}("");
             require(feeInEth, "ETH payment failed");
-            require(msg.value - feeETH == _numbers[0], "native value do not match");
+            require(
+                msg.value - feeETH == _numbers[0],
+                "native value do not match"
+            );
         }
-
-        // Fee in L3P (for BSC and ETH chain)
+        // Fee in L3P (for BSC and ETH chains)
         else if (msg.value == _numbers[0]) {
             require(
                 IERC20(L3P).balanceOf(msg.sender) >= feeL3P,
@@ -131,7 +133,11 @@ contract AssemblyNFT is
                 IERC20(L3P).allowance(msg.sender, address(this)) >= feeL3P,
                 "Not authorized"
             );
-            bool feeInL3P = IERC20(L3P).transferFrom(msg.sender, address(this), feeL3P);
+            bool feeInL3P = IERC20(L3P).transferFrom(
+                msg.sender,
+                feeReceiver,
+                feeL3P
+            );
             require(feeInL3P, "L3P payment failed");
             require(msg.value == _numbers[0], "value not match");
         }
@@ -189,7 +195,7 @@ contract AssemblyNFT is
         uint256[] memory _numbers
     ) external payable override returns (uint256 tokenId) {
         require(_to != address(0), "can't mint to zero address");
-        
+
         // Fee in native (ETH, MATIC, BNB)
         if (msg.value > _numbers[0]) {
             require(
@@ -198,9 +204,11 @@ contract AssemblyNFT is
             );
             (bool feeInEth, ) = feeReceiver.call{value: feeETH}("");
             require(feeInEth, "ETH payment failed");
-            require(msg.value - feeETH == _numbers[0], "native value do not match");
+            require(
+                msg.value - feeETH == _numbers[0],
+                "native value do not match"
+            );
         }
-
         // Fee in L3P (for BSC and ETH chain)
         else if (msg.value == _numbers[0]) {
             require(
@@ -211,7 +219,11 @@ contract AssemblyNFT is
                 IERC20(L3P).allowance(msg.sender, address(this)) >= feeL3P,
                 "Not authorized"
             );
-            bool feeInL3P = IERC20(L3P).transferFrom(msg.sender, address(this), feeL3P);
+            bool feeInL3P = IERC20(L3P).transferFrom(
+                msg.sender,
+                feeReceiver,
+                feeL3P
+            );
             require(feeInL3P, "L3P payment failed");
             require(msg.value == _numbers[0], "value not match");
         }
@@ -306,6 +318,7 @@ contract AssemblyNFT is
         }
         emit AssemblyAssetClaimed(_tokenId, msg.sender, _addresses, _numbers);
     }
+
 
     /* Restricted functions:
      *************************/
