@@ -90,6 +90,7 @@ const FeeSelector = ({ setServiceFee }) => {
       {!onLP3Chain && (
         <Alert
           type='info'
+          style={{ width: "60%", margin: "auto" }}
           closable={true}
           showIcon
           message={`L3P payment is not available on ${chainName} yet.`}

@@ -142,8 +142,8 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
       setWaiting(false);
     } catch (error) {
       console.log(error);
-      const title = "Error";
-      const msg = "Something went wrong ),:  we weren't able to create your bundle";
+      const title = "Unexpected error";
+      const msg = "Oops, something went wrong. We weren't able to bundle your assets.";
       openNotification("error", title, msg);
       setWaiting(false);
     }
