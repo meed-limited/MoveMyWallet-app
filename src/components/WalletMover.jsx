@@ -1,5 +1,6 @@
 /*eslint no-dupe-keys: "Off"*/
 import { useState, useEffect } from "react";
+import { Moralis } from "moralis";
 import { useMoralis } from "react-moralis";
 import AccountVerification from "components/Account/AccountVerification";
 import ChainVerification from "components/Chains/ChainVerification";
@@ -11,8 +12,10 @@ import BundlePane from "./DisplayPane/BundlePane";
 import Transfer from "components/DisplayPane/TransferPane/Transfer";
 import { openNotification } from "helpers/notifications";
 import { findBackupBundle } from "helpers/findBackupBundle";
+import { ABI, getContractAddress } from "helpers/constant";
 import { Spin } from "antd";
 import Done from "./DisplayPane/TransferPane/Done";
+import AdminPane from "./AdminPane";
 
 const styles = {
   content: {
@@ -43,8 +46,9 @@ const styles = {
   }
 };
 
-function WalletMover() {
-  const { account, isAuthenticated } = useMoralis();
+function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
+  const { account, isAuthenticated, chainId, user } = useMoralis();
+  const contractAddress = getContractAddress(chainId);
   const [tokensToTransfer, setTokensToTransfer] = useState();
   const [NFTsToTransfer, setNFTsToTransfer] = useState();
   const [tokenData, setTokenData] = useState([]);
@@ -52,6 +56,35 @@ function WalletMover() {
   const [displayPaneMode, setDisplayPaneMode] = useState("start");
   const [address, setAddress] = useState("");
   const [isSupportedChain, setIsSupportedChain] = useState("");
+
+  const getAdminAddress = async () => {
+    const readOptions = {
+      contractAddress: contractAddress,
+      functionName: "owner",
+      abi: ABI.abi
+    };
+
+    try {
+      const owner = await Moralis.executeFunction(readOptions);
+      setAdminAddress(owner);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAdminAddress();
+    setIsAdminPaneOpen(false);
+    setDisplayPaneMode("start");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account, isAuthenticated, user]);
+
+  useEffect(() => {
+    if (isAdminPaneOpen) {
+      setDisplayPaneMode("admin");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAdminPaneOpen, account]);
 
   const getAddressFromTransfer = (value) => {
     setAddress(value);
@@ -94,7 +127,7 @@ function WalletMover() {
         <div style={styles.pane}>
           <Spin style={{ borderRadius: "20px" }} spinning={waiting} size='large'>
             <AccountVerification />
-            <ChainVerification setIsSupportedChain={setIsSupportedChain}/>
+            <ChainVerification setIsSupportedChain={setIsSupportedChain} />
             {isAuthenticated && isSupportedChain && (
               <>
                 {displayPaneMode === "start" && <StartPane onStart={() => setDisplayPaneMode("tokens")} />}
@@ -131,6 +164,7 @@ function WalletMover() {
                   />
                 )}
                 {displayPaneMode === "done" && <Done address={address} />}
+                {displayPaneMode === "admin" && <AdminPane setDisplayPaneMode={setDisplayPaneMode} setIsAdminPaneOpen={setIsAdminPaneOpen} />}
               </>
             )}
           </Spin>

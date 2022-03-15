@@ -16,7 +16,7 @@ const styles = {
 };
 
 const FeeSelector = ({ setServiceFee }) => {
-  const { chainId, isWeb3Enabled, network } = useMoralis();
+  const { chainId, isWeb3Enabled } = useMoralis();
   const { nativeToken } = useNativeBalance(chainId);
   const contractAddress = getContractAddress(chainId);
   const [feeInETH, setFeeinETH] = useState();
@@ -49,7 +49,7 @@ const FeeSelector = ({ setServiceFee }) => {
 
     try {
       let feeL3P = await Moralis.executeFunction(readOptions);
-      feeL3P = parseInt(feeL3P);
+      feeL3P = parseInt(feeL3P) / "1e18";
       setFeeinL3P(feeL3P);
     } catch (error) {
       console.log(error);
@@ -61,6 +61,7 @@ const FeeSelector = ({ setServiceFee }) => {
       getFeeinETH();
       getFeeinL3P();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isWeb3Enabled]);
 
   const onSwitchChange = (checked) => {

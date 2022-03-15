@@ -8,7 +8,7 @@ export const findBackupBundle = async (account, setTokenData) => {
   let ret = false
 
   if(res.length===0) {
-    console.log("No backup bundle found on Moralis")
+    console.log("No backup bundle found")
     return ret;
   }
 

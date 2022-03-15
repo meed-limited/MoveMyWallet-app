@@ -15,6 +15,8 @@ const styles = {
 const StepsPane = ({ tokensToTransfer, NFTsToTransfer, displayPaneMode }) => {
   const switchStep = () => {
     switch (displayPaneMode) {
+      case "admin":
+        return -1;
       case "start":
         return -1;
       case "tokens":

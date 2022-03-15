@@ -1,13 +1,14 @@
-import { useEffect } from "react";
-import { useMoralis } from "react-moralis";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { useMoralis } from "react-moralis";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
-import { Layout } from "antd";
+import WalletMover from "./components/WalletMover";
+import { Button, Layout } from "antd";
 import "antd/dist/antd.css";
 import "./style.css";
-import WalletMover from "./components/WalletMover";
 import appBackground from "./assets/app-background.jpg";
+import beta from "./assets/beta.png";
 const { Header } = Layout;
 
 const styles = {
@@ -35,13 +36,13 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     fontFamily: "Sora, sans-serif",
-    padding: "10px 35px 0 20px"
+    padding: "15px 35px 0 0"
   },
   title: {
     fontSize: "35px",
     fontWeight: 500,
     letterSpacing: "1px",
-    paddingLeft: "5px"
+    paddingTop: "20px",
   },
   headerRight: {
     display: "flex",
@@ -49,10 +50,25 @@ const styles = {
     alignItems: "center",
     fontSize: "15px",
     fontWeight: "600"
+  },
+  adminButton: {
+    height: "40px",
+    padding: "0 20px",
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: "15px",
+    margin: "20px 20px",
+    border: "none",
+    background: "black",
+    color: "white",
+    fontFamily: "Sora, sans-serif"
   }
 };
 const App = () => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis();
+  const [isAdminPaneOpen, setIsAdminPaneOpen] = useState(false);
+  const [adminAddress, setAdminAddress] = useState();
+  const isAdmin = account?.toLowerCase() === adminAddress?.toLowerCase() ? true : false;
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
@@ -60,19 +76,35 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
+  const openAdminPane = () => {
+    if (!isAdminPaneOpen) {
+      setIsAdminPaneOpen(true);
+    }
+  };
+
   return (
     <Layout style={styles.layout}>
       <Router>
         <Header style={styles.header}>
           <Logo />
           <div style={styles.headerRight}>
+            {isAdmin && (
+              <div>
+                <Button style={styles.adminButton} shape='round' onClick={openAdminPane}>
+                  Admin Panel
+                </Button>
+              </div>
+            )}
             <Chains />
             <Account />
           </div>
         </Header>
-
         <div style={styles.content}>
-          <WalletMover></WalletMover>
+          <WalletMover
+            setAdminAddress={setAdminAddress}
+            isAdminPaneOpen={isAdminPaneOpen}
+            setIsAdminPaneOpen={setIsAdminPaneOpen}
+          />
         </div>
       </Router>
     </Layout>
@@ -81,7 +113,7 @@ const App = () => {
 
 export const Logo = () => (
   <div style={{ display: "flex", alignSelf: "center" }}>
-    <svg
+    {/* <svg
       style={{ alignSelf: "center" }}
       width='60'
       height='38'
@@ -101,7 +133,11 @@ export const Logo = () => (
         d='M39.7135 25.1249C37.1094 25.1025 34.9991 27.2127 34.9766 29.8169C34.9542 32.4211 37.0645 34.5313 39.6686 34.5538C41.1503 34.5538 42.5647 33.8578 43.4626 32.6905C43.53 32.6007 43.5973 32.4884 43.6871 32.3986C45.1015 30.221 44.4729 27.3025 42.2953 25.9107C41.532 25.3943 40.634 25.1249 39.7135 25.1249Z'
         fill='#B7E803'
       />
-    </svg>
+    </svg> */}
+    <div style={{ paddingTop: "8px", width: "100px", height: "100px" }}>
+    <img src={beta} alt='beta'/>
+    </div>
+    
     <div style={styles.title}>MoveMyWallet</div>
   </div>
 );
