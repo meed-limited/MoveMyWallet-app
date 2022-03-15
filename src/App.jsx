@@ -88,7 +88,7 @@ const App = () => {
         <Header style={styles.header}>
           <Logo />
           <div style={styles.headerRight}>
-            {isAdmin && (
+            {isAdmin && isAuthenticated && (
               <div>
                 <Button style={styles.adminButton} shape='round' onClick={openAdminPane}>
                   Admin Panel
