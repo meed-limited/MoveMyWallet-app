@@ -189,31 +189,46 @@ const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
     <div style={styles.container}>
       <div style={styles.title}>Admin Panel</div>
       <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <Input type='number' style={{ marginBottom: "5px" }} onChange={(e) => setEthAmount(e.target.value)} />
+        <Input
+          type='number'
+          placeholder='Enter the new fee in ETH'
+          style={{ marginBottom: "5px" }}
+          onChange={(e) => setEthAmount(e.target.value)}
+        />
         <Button type='primary' onClick={setEthFee}>
           Set ETH fee
         </Button>
       </div>
       <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <Input type='number' style={{ marginBottom: "5px" }} onChange={(e) => setL3PAmount(e.target.value)} />
+        <Input
+          type='number'
+          placeholder='Enter the new fee in L3P'
+          style={{ marginBottom: "5px" }}
+          onChange={(e) => setL3PAmount(e.target.value)}
+        />
         <Button type='primary' onClick={setL3PFee}>
           Set L3P fee
         </Button>
       </div>
       <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <AddressInput style={{ marginBottom: "5px" }} autoFocus placeholder='Receiver' onChange={setAddress} />
+        <AddressInput
+          style={{ marginBottom: "5px" }}
+          autoFocus
+          placeholder='Enter the new receiver address'
+          onChange={setAddress}
+        />
         <Button type='primary' onClick={setReceiverAddress}>
           Set receiver address
         </Button>
       </div>
       <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <Input style={{ marginBottom: "5px" }} onChange={setIPFSurl} />
+        <Input style={{ marginBottom: "5px" }} placeholder='Enter the new metadata URL' onChange={setIPFSurl} />
         <Button type='primary' onClick={setMetadata}>
           Set Metadata
         </Button>
       </div>
       <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <AddressInput style={{ marginBottom: "5px" }} autoFocus placeholder='Receiver' onChange={setAdminAddress} />
+        <AddressInput style={{ marginBottom: "5px" }} placeholder='Enter the new admin address' autoFocus onChange={setAdminAddress} />
         <Button type='primary' onClick={setNewAdmin}>
           Set admin address
         </Button>
