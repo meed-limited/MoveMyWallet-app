@@ -42,7 +42,7 @@ contract AssemblyNFT is
     address private L3P = 0xdeF1da03061DDd2A5Ef6c59220C135dec623116d; // L3P contract address (only available on Ethereum && BSC);
     address payable private feeReceiver; // 
     uint256 public feeETH = 0.01 ether; // Fees charged on TXs, if paid in native (ETH, MATIC, BNB)
-    uint256 public feeL3P = 100; // Fees charged on TXs, if paid in L3P
+    uint256 public feeL3P = 100000000000000000000; // Fees charged on TXs, if paid in L3P, default === 100 L3P
     uint256 nonce;
     string public _baseURIextended;
 
