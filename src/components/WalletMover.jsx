@@ -4,18 +4,18 @@ import { Moralis } from "moralis";
 import { useMoralis } from "react-moralis";
 import AccountVerification from "components/Account/AccountVerification";
 import ChainVerification from "components/Chains/ChainVerification";
-import StartPane from "./DisplayPane/StartPane";
+import AdminPane from "./AdminPane";
 import StepsPane from "./StepsPane";
+import StartPane from "./DisplayPane/StartPane";
 import TokenSelection from "./DisplayPane/TokenSelection";
 import NFTSelection from "./DisplayPane/NFTSelection";
 import BundlePane from "./DisplayPane/BundlePane";
 import Transfer from "components/DisplayPane/TransferPane/Transfer";
+import Done from "./DisplayPane/TransferPane/Done";
 import { openNotification } from "helpers/notifications";
 import { findBackupBundle } from "helpers/findBackupBundle";
 import { ABI, getContractAddress } from "helpers/constant";
 import { Spin } from "antd";
-import Done from "./DisplayPane/TransferPane/Done";
-import AdminPane from "./AdminPane";
 
 const styles = {
   content: {

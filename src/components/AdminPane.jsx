@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Moralis } from "moralis";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useNativeBalance } from "react-moralis";
 import { openNotification } from "helpers/notifications";
 import { Button, Input } from "antd";
 import { ABI, getContractAddress } from "helpers/constant";
@@ -41,6 +41,7 @@ const styles = {
 const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
   const { chainId } = useMoralis();
   const contractAddress = getContractAddress(chainId);
+  const { nativeToken } = useNativeBalance(chainId);
   const [ethAmount, setEthAmount] = useState();
   const [L3PAmount, setL3PAmount] = useState();
   const [address, setAddress] = useState(null);
@@ -68,7 +69,7 @@ const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
       try {
         await Moralis.executeFunction(sendOptions);
         let title = "All set!";
-        let msg = "ETH fee set successfully.";
+        let msg = `${nativeToken.symbol} fee set successfully.`;
         openNotification("success", title, msg);
       } catch (error) {
         let title = "Unexpected error";
@@ -188,51 +189,54 @@ const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
   return (
     <div style={styles.container}>
       <div style={styles.title}>Admin Panel</div>
-      <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
+      <div style={{ width: "60%", margin: "auto" }}>
         <Input
           type='number'
-          placeholder='Enter the new fee in ETH'
+          placeholder={`Enter the new fee in ${nativeToken.symbol}`}
           style={{ marginBottom: "5px" }}
           onChange={(e) => setEthAmount(e.target.value)}
         />
-        <Button type='primary' onClick={setEthFee}>
-          Set ETH fee
+        <Button type='primary' onClick={setEthFee} style={{ marginBottom: "20px" }}>
+          Set {nativeToken.symbol} fee
         </Button>
-      </div>
-      <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <Input
-          type='number'
-          placeholder='Enter the new fee in L3P'
-          style={{ marginBottom: "5px" }}
-          onChange={(e) => setL3PAmount(e.target.value)}
-        />
-        <Button type='primary' onClick={setL3PFee}>
-          Set L3P fee
-        </Button>
-      </div>
-      <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
+        {chainId === 0x1 && chainId === 0x38 && (
+          <>
+            <Input
+              type='number'
+              placeholder='Enter the new fee in L3P'
+              style={{ marginBottom: "5px" }}
+              onChange={(e) => setL3PAmount(e.target.value)}
+            />
+            <Button type='primary' onClick={setL3PFee} style={{ marginBottom: "20px" }}>
+              Set L3P fee
+            </Button>
+          </>
+        )}
+
         <AddressInput
           style={{ marginBottom: "5px" }}
           autoFocus
           placeholder='Enter the new receiver address'
           onChange={setAddress}
         />
-        <Button type='primary' onClick={setReceiverAddress}>
+        <Button type='primary' onClick={setReceiverAddress} style={{ marginBottom: "20px" }}>
           Set receiver address
         </Button>
-      </div>
-      <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
         <Input style={{ marginBottom: "5px" }} placeholder='Enter the new metadata URL' onChange={setIPFSurl} />
-        <Button type='primary' onClick={setMetadata}>
+        <Button type='primary' onClick={setMetadata} style={{ marginBottom: "20px" }}>
           Set Metadata
         </Button>
-      </div>
-      <div style={{ width: "60%", margin: "auto", marginBottom: "20px" }}>
-        <AddressInput style={{ marginBottom: "5px" }} placeholder='Enter the new admin address' autoFocus onChange={setAdminAddress} />
-        <Button type='primary' onClick={setNewAdmin}>
+        <AddressInput
+          style={{ marginBottom: "5px" }}
+          placeholder='Enter the new admin address'
+          autoFocus
+          onChange={setAdminAddress}
+        />
+        <Button type='primary' onClick={setNewAdmin} style={{ marginBottom: "20px" }}>
           Set admin address
         </Button>
       </div>
+
       <div>
         <Button style={styles.adminButton} shape='round' onClick={handleBackClic}>
           Back
