@@ -65,3 +65,13 @@
   width: -webkit-fill-available;
   width: -moz-available;
 }
+
+.ant-btn-icon-only.ant-btn-sm {
+  width: 30px !important;
+  height: 100px !important;
+  padding: 0px 0 39px 0 !important;
+}
+
+.ant-transfer-operation .ant-btn .anticon {
+  font-size: 100px !important;
+}
