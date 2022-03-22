@@ -26,11 +26,11 @@ export const menuItems = [
     value: "Ethereum",
     icon: <ETHLogo />
   },
-  {
-    key: "0x539",
-    value: "Local Chain",
-    icon: <ETHLogo />
-  },
+  // {
+  //   key: "0x539",
+  //   value: "Local Chain",
+  //   icon: <ETHLogo />
+  // },
   // {
   //   key: "0x3",
   //   value: "Ropsten Testnet",

@@ -105,8 +105,12 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
 
   const onValidateNFTSelection = () => {
     setNFTsToTransfer(selectedNFTs);
-    onFinishSelection();
+    onFinishSelection("bundle");
   };
+
+  const onBackClick = () => {
+    onFinishSelection("tokens");
+  }
 
   const NFTMapper = (nft, index) => {
     nft = verifyMetadata(nft);
@@ -150,18 +154,15 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
           message={`Sorry, you can only move the ${NFTsPerPage} shown here, you will have to carry out another transfer`}
         />
       )}
-      {NFTBalances?.total === 0 && (
-        <Alert
-          type='info'
-          showIcon
-          message={"No NFTs found on this account"}
-        />
-      )}
+      {NFTBalances?.total === 0 && <Alert type='info' showIcon message={"No NFTs found on this account"} />}
       <div style={{ ...styles.NFTs, overflowY: isNFTloading ? "hidden" : "scroll" }}>
         <Spin size='large' spinning={isNFTloading} />
         {fetchedNFTs && fetchedNFTs?.map(NFTMapper)}
       </div>
       <div style={styles.buttonDiv}>
+        <Button style={{...styles.button, float: "left", marginLeft: "50px" }} shape='round' onClick={onBackClick}>
+          Back
+        </Button>
         <Button style={styles.button} shape='round' onClick={onSelectAllNFTs}>
           {selectButtonText}
         </Button>

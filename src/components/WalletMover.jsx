@@ -140,14 +140,14 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
                 )}
                 {displayPaneMode === "nfts" && (
                   <NFTSelection
-                    onFinishSelection={() => setDisplayPaneMode("bundle")}
+                    onFinishSelection={setDisplayPaneMode}
                     NFTsToTransfer={NFTsToTransfer}
                     setNFTsToTransfer={setNFTsToTransfer}
                   />
                 )}
                 {displayPaneMode === "bundle" && (
                   <BundlePane
-                    onFinishSelection={() => setDisplayPaneMode("transfer")}
+                    onFinishSelection={setDisplayPaneMode}
                     onReset={onReset}
                     setTokenData={setTokenData}
                     tokensToTransfer={tokensToTransfer}

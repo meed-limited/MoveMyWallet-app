@@ -26,15 +26,22 @@ const styles = {
     flexDirection: "column",
     padding: "30px"
   },
+  backButton: {
+    background: "black",
+    margin: "20px 20px",
+    padding: "5px 40px",
+    texAlign: "center",
+    border: 0,
+    color: "white",
+    fontWeight: 600
+  },
   resetButton: {
-    padding: "0px 30px",
-    height: "30px",
     background: "white",
+    margin: "20px 20px",
+    padding: "5px 40px",
     border: 0,
     color: "black",
-    fontSize: "15px",
     fontWeight: 600,
-    margin: "20px 20px"
   },
   bundleButton: {
     padding: "5px 100px",
@@ -61,6 +68,10 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
   const ethers = require("ethers");
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const contract = new ethers.Contract(contractAddress, ABI.abi, provider);
+
+  const onBackClick = () => {
+    onFinishSelection("nfts");
+  };
 
   const sortArrayForBundle = () => {
     const addresses = [];
@@ -155,7 +166,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
       let nonce = parseInt(salt);
       setTokenData([id, nonce, addressesArray, numbersArray]);
       saveBackupBundle(account, [id, nonce, addressesArray, numbersArray]);
-      onFinishSelection();
+      onFinishSelection("transfer");
     });
   };
 
@@ -164,13 +175,16 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
       <div style={styles.bundlePane}>
         <FeeSelector setServiceFee={setServiceFee} />
 
-        <div style={styles.buttonDiv}>
+        <div>
           <Button style={styles.bundleButton} shape='round' onClick={executeBundle}>
             BUNDLE <DownloadOutlined style={{ marginLeft: "25px", transform: "scale(1.2)" }} />
           </Button>
         </div>
         <p>OR</p>
-        <div style={styles.buttonDiv}>
+        <div style={{ display: "inline-flex", justifyContent: "center" }}>
+          <Button style={{ ...styles.backButton, float: "left", marginLeft: "50px" }} shape='round' onClick={onBackClick}>
+            Back
+          </Button>
           <Button style={styles.resetButton} shape='round' onClick={onReset}>
             Restart
           </Button>
