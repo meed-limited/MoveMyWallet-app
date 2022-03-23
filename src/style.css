@@ -72,6 +72,29 @@
   padding: 0px 0 39px 0 !important;
 }
 
+.ant-btn-primary {
+  background: rgb(231 231 121);
+  color: darkslategrey;
+}
+
+.ant-btn-primary:hover {
+  background: rgb(231 231 121) !important;
+  color: darkslategrey;
+}
+
 .ant-transfer-operation .ant-btn .anticon {
   font-size: 100px !important;
+  color: darkslategrey;
+}
+
+.ant-transfer-list-content-item-remove {
+  font-size: 20px !important;
+}
+
+.ant-transfer-list-content-item-checked {
+  background-color: rgb(231 231 121);
+}
+
+.ant-transfer-list-content-item:hover {
+  background-color: rgb(231 231 121) !important;
 }

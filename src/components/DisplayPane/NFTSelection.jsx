@@ -121,7 +121,7 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
         hoverable
         style={{
           width: 190,
-          border: isNFTSelected(nft) ? "2px solid white" : undefined,
+          border: isNFTSelected(nft) ? "5px solid #e7e779" : undefined,
           opacity: isNFTSelected(nft) ? "1" : "0.9",
           transform: isNFTSelected(nft) ? undefined : "scale(0.9)"
         }}
