@@ -135,7 +135,7 @@ function TokenSelection({ tokensToTransfer, setTokensToTransfer, onFinishSelecti
           render={renderItem}
           oneWay
           header={undefined}
-          titles={["remaining", "to transfer"]}
+          titles={["Remaining", "To transfer"]}
         />
       </div>
       <div style={styles.buttonDiv}>
