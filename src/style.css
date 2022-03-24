@@ -79,7 +79,7 @@
 
 .ant-btn-primary:hover {
   background: rgb(231 231 121) !important;
-  color: darkslategrey;
+  color: darkslategrey !important;
 }
 
 .ant-transfer-operation .ant-btn .anticon {
@@ -97,4 +97,5 @@
 
 .ant-transfer-list-content-item:hover {
   background-color: rgb(231 231 121) !important;
+  
 }

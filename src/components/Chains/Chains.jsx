@@ -8,11 +8,11 @@ const styles = {
   item: {
     display: "flex",
     alignItems: "center",
+    padding: "0 10px",
     height: "42px",
-    fontWeight: "500",
     fontFamily: "Sora, sans-serif",
     fontSize: "14px",
-    padding: "0 10px"
+    fontWeight: "500"
   },
   button: {
     border: "2px solid rgb(231, 234, 243)",
@@ -116,7 +116,8 @@ function Chains() {
     <div>
       <Dropdown overlay={menu} trigger={["click"]}>
         <Button key={selected?.key} icon={selected?.icon} style={{ ...styles.button, ...styles.item }}>
-          <span style={{ marginLeft: "5px" }}>{selected?.value}</span>
+          {!selected && <span style={{ marginLeft: "5px" }}>Select Chain</span>}
+          {selected && <span style={{ marginLeft: "5px" }}>{selected?.value}</span>}
           <DownOutlined />
         </Button>
       </Dropdown>
