@@ -51,7 +51,7 @@ const styles = {
 };
 
 function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) {
-  const NFTsPerPage = 100;
+  const NFTsPerPage = 500;
   const [fetchedNFTs, setFetchedNFTs] = useState([]);
   const [selectedNFTs, setSelectedNFTs] = useState(NFTsToTransfer ?? []);
   const { verifyMetadata } = useVerifyMetadata();
