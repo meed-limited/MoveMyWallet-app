@@ -192,7 +192,7 @@ const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
       <div style={{ width: "60%", margin: "auto" }}>
         <Input
           type='number'
-          placeholder={`Enter the new fee in ${nativeToken.symbol}`}
+          placeholder={`Enter the new fee in ${nativeToken?.symbol}`}
           style={{ marginBottom: "5px" }}
           onChange={(e) => setEthAmount(e.target.value)}
         />
