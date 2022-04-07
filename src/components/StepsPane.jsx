@@ -6,9 +6,11 @@ const styles = {
   pane: {
     background: "rgb(118,123,223)",
     background: "linear-gradient(315deg, rgba(69,75,205,1) 0%, rgba(159,161,198,0.4) 50%, rgba(223,223,228,0.3) 100%)",
+    height: "inherit",
     borderRadius: "20px",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    overflow: "auto"
   }
 };
 
