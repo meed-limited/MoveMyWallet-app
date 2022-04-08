@@ -56,7 +56,7 @@ const StepsPane = ({ tokensToTransfer, NFTsToTransfer, displayPaneMode }) => {
           }
         />
         <Step title='Bundle' description='Pack all your assets in one NFT for a single transaction.' />
-        <Step title='Transfer' description='Get all your assets ready and waiting for you on your new wallet!' />
+        <Step title='Transfer' description='Get all your assets ready and waiting for you in your new wallet!' />
       </Steps>
     </div>
   );

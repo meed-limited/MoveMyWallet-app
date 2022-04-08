@@ -8,10 +8,7 @@ const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY;
 const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY;
 
 module.exports = {
-  plugins: [
-    'truffle-contract-size',
-    'truffle-plugin-verify'
-  ],
+  plugins: ['truffle-plugin-verify'],
   api_keys: {
     etherscan: ETHERSCAN_API_KEY,
     polygonscan: POLYGONSCAN_API_KEY,
