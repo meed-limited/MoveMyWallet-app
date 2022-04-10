@@ -47,7 +47,7 @@ const styles = {
 };
 
 function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
-  const { account, isAuthenticated, chainId, user } = useMoralis();
+  const { account, isAuthenticated, chainId, user, isWeb3Enabled } = useMoralis();
   const contractAddress = getContractAddress(chainId);
   const [tokensToTransfer, setTokensToTransfer] = useState();
   const [NFTsToTransfer, setNFTsToTransfer] = useState();
@@ -66,18 +66,23 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
 
     try {
       const owner = await Moralis.executeFunction(readOptions);
-      setAdminAddress(owner);
+      return owner;
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getAdminAddress();
-    setIsAdminPaneOpen(false);
-    setDisplayPaneMode("start");
+    const launchApp = async () => {
+      if (isWeb3Enabled) {
+        const admin = await getAdminAddress();
+        setAdminAddress(admin);
+        setIsAdminPaneOpen(false);
+      }
+    };
+    launchApp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, isAuthenticated, user]);
+  }, [account, isAuthenticated, isWeb3Enabled, user, contractAddress]);
 
   useEffect(() => {
     if (isAdminPaneOpen) {
@@ -91,11 +96,11 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
   };
 
   useEffect(() => {
-    if (account && isAuthenticated) {
+    if (isWeb3Enabled && account && isAuthenticated) {
       checkIfBackupOnStart();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, isAuthenticated]);
+  }, [isWeb3Enabled, account, isAuthenticated]);
 
   const checkIfBackupOnStart = () => {
     findBackupBundle(account, setTokenData).then((foundBackup) => {
@@ -104,6 +109,8 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
         const title = "Bundle Recovered";
         let msg = "We found an unsent bundle from your previous session";
         openNotification("info", title, msg);
+      } else {
+        setDisplayPaneMode("start");
       }
     });
   };
@@ -164,7 +171,9 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
                   />
                 )}
                 {displayPaneMode === "done" && <Done address={address} />}
-                {displayPaneMode === "admin" && <AdminPane setDisplayPaneMode={setDisplayPaneMode} setIsAdminPaneOpen={setIsAdminPaneOpen} />}
+                {displayPaneMode === "admin" && (
+                  <AdminPane setDisplayPaneMode={setDisplayPaneMode} setIsAdminPaneOpen={setIsAdminPaneOpen} />
+                )}
               </>
             )}
           </Spin>

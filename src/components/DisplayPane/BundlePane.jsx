@@ -110,7 +110,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
 
   const bundleOptions = (addresses, numbers, nativeAmount) => ({
     contractAddress: contractAddress,
-    functionName: "mint",
+    functionName: "safeMint",
     abi: ABI.abi,
     params: {
       _to: account,

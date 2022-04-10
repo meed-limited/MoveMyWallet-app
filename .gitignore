@@ -34,3 +34,4 @@ typechain
 /Truffle/build
 /Truffle/data
 /Truffle/.secret
+/Truffle/secret.json

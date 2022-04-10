@@ -1,6 +1,6 @@
 {
   "name": "move_your_wallet",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Pedrojok01",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -8,7 +8,7 @@
     "antd": "^4.16.13",
     "ethers": "^5.6.0",
     "magic-sdk": "7.0.0",
-    "moralis": "^1.2.3",
+    "moralis": "^1.5.9",
     "react": "^17.0.2",
     "react-blockies": "^1.4.1",
     "react-dom": "^17.0.2",
@@ -24,9 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "devchain": "node Truffle/scripts/devChain.js",
-    "connect": "moralis-admin-cli connect-local-devchain",
-    "watch:events": "moralis-admin-cli add-contract",
-    "deploy": "node Truffle/scripts/deployContract.js"
+    "connect": "moralis-admin-cli connect-local-devchain"
   },
   "eslintConfig": {
     "extends": [
@@ -51,8 +49,8 @@
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",
-    "@truffle/hdwallet-provider": "^2.0.3",
-    "truffle-contract-size": "^2.0.1",
+    "@truffle/hdwallet-provider": "2.0.5",
+    "dotenv": "^16.0.0",
     "truffle-plugin-verify": "^0.5.21"
   }
 }

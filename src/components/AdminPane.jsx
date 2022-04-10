@@ -222,7 +222,11 @@ const AdminPane = ({ setDisplayPaneMode, setIsAdminPaneOpen }) => {
         <Button type='primary' onClick={setReceiverAddress} style={{ marginBottom: "20px" }}>
           Set receiver address
         </Button>
-        <Input style={{ marginBottom: "5px" }} placeholder='Enter the new metadata URL' onChange={setIPFSurl} />
+        <Input
+          style={{ marginBottom: "5px" }}
+          placeholder='Enter the new metadata URL'
+          onChange={(e) => setIPFSurl(e.target.value)}
+        />
         <Button type='primary' onClick={setMetadata} style={{ marginBottom: "20px" }}>
           Set Metadata
         </Button>

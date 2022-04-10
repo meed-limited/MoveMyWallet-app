@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
 import { menuItems } from "./Chains";
 
@@ -31,7 +32,12 @@ const ChainVerification = ({ setIsSupportedChain }) => {
   const { chainId, isAuthenticated } = useMoralis();
   const onSupportedChain = menuItems?.filter((item) => item.key === chainId).length > 0;
 
-  setIsSupportedChain(onSupportedChain);
+  useEffect(() => {
+    if (chainId && isAuthenticated) {
+      setIsSupportedChain(onSupportedChain);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chainId, isAuthenticated, onSupportedChain]);
 
   return (
     <>
