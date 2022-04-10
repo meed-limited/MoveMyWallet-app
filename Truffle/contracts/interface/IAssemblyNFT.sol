@@ -30,13 +30,6 @@ interface IAssemblyNFT {
 
     /// @dev to assemble lossless assets
     /// @param _to the receiver of the assembly token
-    function mint(
-        address _to,
-        address[] memory _addresses,
-        uint256[] memory _numbers
-    ) external payable returns (uint256 tokenId);
-
-    /// @dev mint with additional logic that calculates the actual received value for tokens.
     function safeMint(
         address _to,
         address[] memory _addresses,
