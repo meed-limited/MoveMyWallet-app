@@ -111,7 +111,7 @@ export const Logo = () => (
     <div style={{ paddingTop: "8px", width: "100px", height: "100px" }}>
       <img src={beta} alt='beta' />
     </div>
-    <div style={{ paddingTop: "27px", width: "375px", height: "75px" }}>
+    <div style={{ paddingTop: "35px", width: "30vw" }}>
       <img src={MMW_Logo} alt='logo' />
     </div>
   </div>
