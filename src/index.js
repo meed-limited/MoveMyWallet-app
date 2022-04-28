@@ -1,4 +1,4 @@
-import React, { Text } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { MoralisProvider } from "react-moralis";
@@ -21,13 +21,6 @@ const Application = () => {
         <App isServerInfo />
       </MoralisProvider>
     );
-  else {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Text>This is a problem from index.js</Text>
-      </div>
-    );
-  }
 };
 
 ReactDOM.render(

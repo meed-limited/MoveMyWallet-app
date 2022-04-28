@@ -37,7 +37,7 @@ module.exports = {
     polygon_mainnet: {
       provider: () => new HDWalletProvider(mnemonic, `${API_KEY_POLYGON}`),
       network_id: 137,
-      confirmations: 10,
+      confirmations: 5,
       timeoutBlocks: 200,
       skipDryRun: true
     }

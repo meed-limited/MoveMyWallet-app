@@ -74,7 +74,7 @@ const App = () => {
   const openAdminPane = () => {
     if (!isAdminPaneOpen) {
       setIsAdminPaneOpen(true);
-    }
+    } else setIsAdminPaneOpen(false);
   };
 
   return (
