@@ -39,7 +39,9 @@ module.exports = {
       network_id: 137,
       confirmations: 5,
       timeoutBlocks: 200,
-      skipDryRun: true
+      skipDryRun: true,
+      maxFeePerGas: 80000000000,
+      maxPriorityFeePerGas: 79000000000
     }
   },
 

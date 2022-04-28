@@ -1,7 +1,7 @@
 // Insert your smart-contract addresses here:
 export const ASSEMBLY_NFT_ETHEREUM = "";
 export const ASSEMBLY_NFT_BSC = "0x1c9ab1642d36304B540a62e66DEfe0F4Bf21E256";
-export const ASSEMBLY_NFT_POLYGON = "";
+export const ASSEMBLY_NFT_POLYGON = "0x29f485dF7904D398F6325616E0eCB2f401d8A36F";
 export const ASSEMBLY_NFT_MUMBAI = "0x35539B03dC1D9dC7ED368A9BF993cDAb2c4e4f69"; // Old contract
 
 export const CHAINS_WITH_L3P_SUPPORT = [ "0x1", "0x38"];

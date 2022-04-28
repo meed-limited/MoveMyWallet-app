@@ -61,11 +61,11 @@ export const menuItems = [
   //   value: "Smart Chain Testnet",
   //   icon: <BSCLogo />,
   // },
-  // {
-  //   key: "0x89",
-  //   value: "Polygon",
-  //   icon: <PolygonLogo />
-  // },
+  {
+    key: "0x89",
+    value: "Polygon",
+    icon: <PolygonLogo />
+  },
   // {
   //   key: "0x13881",
   //   value: "Mumbai",
