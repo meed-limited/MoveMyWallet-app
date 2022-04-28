@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",
-    "@truffle/hdwallet-provider": "2.0.5",
+    "@truffle/hdwallet-provider": "2.0.7",
     "dotenv": "^16.0.0",
     "truffle-plugin-verify": "^0.5.25"
   }
