@@ -2113,10 +2113,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@truffle/hdwallet-provider@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@truffle/hdwallet-provider/-/hdwallet-provider-2.0.7.tgz#4fd84988a8adbb0b5da4da4ed887f0bb025ef0d2"
-  integrity sha512-ddkVUPfBjbxtlvhO7hc2DbqSZ+PrICgI44EIWZwFg5v6Zam+qPVLnfrEnXSVoJzw4j+usFzTIxvpiid+AzKdLw==
+"@truffle/hdwallet-provider@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@truffle/hdwallet-provider/-/hdwallet-provider-2.0.8.tgz#4f2edde26b36356ac8dfe993ed4dece415005be8"
+  integrity sha512-K58AdmEqfHg3o/EERX3YJHDfNcFYOKBpmxi3l/mn8NVXJUXlIkM3eYYKdLilArHcqvp+BYWu7l2tQF8Tt5ozdg==
   dependencies:
     "@ethereumjs/common" "^2.4.0"
     "@ethereumjs/tx" "^3.3.0"
