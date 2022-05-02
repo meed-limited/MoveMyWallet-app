@@ -18,36 +18,41 @@ const styles = {
 };
 
 export const menuItems = [
-  {
-    key: "0x1",
-    value: "Ethereum",
-    icon: <ETHLogo />,
-    label: "Ethereum"
-  },
+  // {
+  //   key: "0x1",
+  //   value: "Ethereum",
+  //   icon: <ETHLogo />,
+  //   label: "Ethereum"
+  // },
   // {
   //   key: "0x539",
   //   value: "Local Chain",
-  //   icon: <ETHLogo />
+  //   icon: <ETHLogo />,
+  //   label: "Local Chain"
   // },
   // {
   //   key: "0x3",
   //   value: "Ropsten Testnet",
   //   icon: <ETHLogo />,
+  //   label: "Ropsten Testnet"
   // },
   // {
   //   key: "0x4",
   //   value: "Rinkeby Testnet",
   //   icon: <ETHLogo />,
+  //   label: "Rinkeby Testnet"
   // },
   // {
   //   key: "0x2a",
   //   value: "Kovan Testnet",
   //   icon: <ETHLogo />,
+  //   label: "Kovan Testnet"
   // },
   // {
   //   key: "0x5",
   //   value: "Goerli Testnet",
   //   icon: <ETHLogo />,
+  //   label: "Goerli Testnet"
   // },
   {
     key: "0x38",
@@ -77,11 +82,13 @@ export const menuItems = [
   //   key: "0xa86a",
   //   value: "Avalanche",
   //   icon: <AvaxLogo />,
+  //   label: "Avalanche"
   // },
   // {
   //   key: "0xa869",
   //   value: "Avalanche Testnet",
   //   icon: <AvaxLogo />,
+  //   label: "Avalanche Testnet""
   // },
 ];
 
