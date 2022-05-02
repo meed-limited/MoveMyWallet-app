@@ -53,7 +53,7 @@ module.exports = {
       confirmations: 5,
       timeoutBlocks: 200,
       skipDryRun: true,
-      chainId: 137,
+      chainId: 137
     }
   },
 

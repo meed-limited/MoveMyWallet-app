@@ -5,21 +5,21 @@ export const findBackupBundle = async (account, setTokenData) => {
   const query = new Moralis.Query(Backup);
   query.equalTo("account", account);
   const res = await query.find();
-  let ret = false
+  let ret = false;
 
-  if(res.length===0) {
-    console.log("No backup bundle found")
+  if (res.length === 0) {
+    console.log("No backup bundle found");
     return ret;
   }
 
-  await query.get(res[0].id).then(backup => {
-    console.log("Found backup bundle with tokenId "+backup.get("tokenId"))
+  await query.get(res[0].id).then((backup) => {
+    console.log("Found backup bundle with tokenId " + backup.get("tokenId"));
     const { tokenId, nonce, addressesArray, numbersArray, chainId } = backup.attributes;
-    setTokenData([ tokenId, nonce, addressesArray, numbersArray]);
+    setTokenData([tokenId, nonce, addressesArray, numbersArray]);
     ret = { isBackup: true, chainId: chainId };
-  })
-  return ret
-}
+  });
+  return ret;
+};
 
 export const saveBackupBundle = async (account, chainId, tokenData) => {
   const Backup = Moralis.Object.extend("BundleBackup");
@@ -39,14 +39,14 @@ export const destroyBackupBundle = async (tokenId) => {
   const query = new Moralis.Query(Backup);
   query.equalTo("tokenId", tokenId);
   const res = await query.find();
-  
-  if(res.length===0) {
-    console.warn("No backup found with tokenId "+tokenId);
+
+  if (res.length === 0) {
+    console.warn("No backup found with tokenId " + tokenId);
     return;
   }
 
-  query.get(res[0].id).then(backup => {
-    backup.destroy()
-    console.log("Destruction of backup with tokenId: "+tokenId)
-  })
-}
+  query.get(res[0].id).then((backup) => {
+    backup.destroy();
+    console.log("Destruction of backup with tokenId: " + tokenId);
+  });
+};

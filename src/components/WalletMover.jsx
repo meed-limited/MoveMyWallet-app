@@ -120,7 +120,6 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
           method: "wallet_switchEthereumChain",
           params: [{ chainId: foundBackup.chainId }]
         });
-
       } else {
         setDisplayPaneMode("start");
       }
