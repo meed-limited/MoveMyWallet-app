@@ -72,7 +72,7 @@ const FeeSelector = ({ setServiceFee }) => {
     }
   };
 
-  const chainName = menuItems.filter((name) => name.key === chainId)[0].value;
+  const chainName = menuItems?.filter((name) => name.key === chainId)[0].value;
 
   return (
     <>

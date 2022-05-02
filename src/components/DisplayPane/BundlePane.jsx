@@ -41,7 +41,7 @@ const styles = {
     padding: "5px 40px",
     border: 0,
     color: "black",
-    fontWeight: 600,
+    fontWeight: 600
   },
   bundleButton: {
     padding: "5px 100px",
@@ -97,7 +97,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     return {
       addressesArray: addresses,
       numbersArray: numbers,
-      nativeAmount: serviceFee.type === "native" ? serviceFee.amount * "1e18" : 0
+      nativeAmount: serviceFee.type === "native" && serviceFee.amount !== 0 ? serviceFee.amount * "1e18" : ""
     };
   };
 
@@ -133,9 +133,12 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     }
 
     try {
-      eventListener(addressesArray, numbersArray);
       const transaction = await Moralis.executeFunction(sendOptions);
       const receipt = await transaction.wait();
+      let id = (receipt.events[3].args.tokenId).toString();
+      let nonce = parseInt((receipt.events[3].args.salt).toString());
+      setTokenData([id, nonce, addressesArray, numbersArray]);
+      saveBackupBundle(account, chainId, [id, nonce, addressesArray, numbersArray]);
       console.log("Bundle successfully created");
       const title = "Bundle Created";
       let link = `${getExplorer(chainId)}tx/${receipt.transactionHash}`;
@@ -151,6 +154,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
       );
       openNotification("success", title, msg);
       setWaiting(false);
+      onFinishSelection("transfer");
     } catch (error) {
       console.log(error);
       const title = "Unexpected error";
@@ -160,21 +164,10 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     }
   };
 
-  const eventListener = async (addressesArray, numbersArray) => {
-    contract.once("AssemblyAsset", (firstHolder, tokenId, salt, addresses, numbers, event) => {
-      let id = tokenId.toString();
-      let nonce = parseInt(salt);
-      setTokenData([id, nonce, addressesArray, numbersArray]);
-      saveBackupBundle(account, [id, nonce, addressesArray, numbersArray]);
-      onFinishSelection("transfer");
-    });
-  };
-
   return (
     <div style={styles.container}>
       <div style={styles.bundlePane}>
         <FeeSelector setServiceFee={setServiceFee} />
-
         <div>
           <Button style={styles.bundleButton} shape='round' onClick={executeBundle}>
             BUNDLE <DownloadOutlined style={{ marginLeft: "25px", transform: "scale(1.2)" }} />
@@ -182,7 +175,11 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
         </div>
         <p>OR</p>
         <div style={{ display: "inline-flex", justifyContent: "center" }}>
-          <Button style={{ ...styles.backButton, float: "left", marginLeft: "50px" }} shape='round' onClick={onBackClick}>
+          <Button
+            style={{ ...styles.backButton, float: "left", marginLeft: "50px" }}
+            shape='round'
+            onClick={onBackClick}
+          >
             Back
           </Button>
           <Button style={styles.resetButton} shape='round' onClick={onReset}>

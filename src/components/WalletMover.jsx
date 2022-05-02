@@ -85,9 +85,14 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
   }, [account, isAuthenticated, isWeb3Enabled, user, contractAddress]);
 
   useEffect(() => {
+    setDisplayPaneMode("start");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chainId]);
+
+  useEffect(() => {
     if (isAdminPaneOpen) {
       setDisplayPaneMode("admin");
-    }
+    } else setDisplayPaneMode("start");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdminPaneOpen, account]);
 
@@ -170,7 +175,7 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
                     setWaiting={setWaiting}
                   />
                 )}
-                {displayPaneMode === "done" && <Done address={address} />}
+                {displayPaneMode === "done" && <Done address={address} onReset={onReset} />}
                 {displayPaneMode === "admin" && (
                   <AdminPane setDisplayPaneMode={setDisplayPaneMode} setIsAdminPaneOpen={setIsAdminPaneOpen} />
                 )}

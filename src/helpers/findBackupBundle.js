@@ -21,11 +21,12 @@ export const findBackupBundle = async (account, setTokenData) => {
   return ret
 }
 
-export const saveBackupBundle = async (account, tokenData) => {
+export const saveBackupBundle = async (account, chainId, tokenData) => {
   const Backup = Moralis.Object.extend("BundleBackup");
   const backup = new Backup();
 
   backup.set("account", account);
+  backup.set("chainId", chainId);
   backup.set("tokenId", tokenData[0]);
   backup.set("nonce", tokenData[1]);
   backup.set("addressesArray", tokenData[2]);

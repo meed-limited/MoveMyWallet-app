@@ -6,26 +6,24 @@ import { useChain, useMoralis } from "react-moralis";
 
 const styles = {
   item: {
-    display: "flex",
-    alignItems: "center",
-    padding: "0 10px",
-    height: "42px",
-    fontFamily: "Sora, sans-serif",
-    fontSize: "14px",
-    fontWeight: "500"
+    borderRadius: "8px",
+    fontFamily: "Sora, sans-serif"
   },
   button: {
-    border: "2px solid rgb(231, 234, 243)",
-    borderRadius: "12px"
+    display: "flex",
+    alignItems: "center",
+    height: "42px",
+    border: "2px solid rgb(231, 234, 243)"
   }
 };
 
 export const menuItems = [
-  // {
-  //   key: "0x1",
-  //   value: "Ethereum",
-  //   icon: <ETHLogo />
-  // },
+  {
+    key: "0x1",
+    value: "Ethereum",
+    icon: <ETHLogo />,
+    label: "Ethereum"
+  },
   // {
   //   key: "0x539",
   //   value: "Local Chain",
@@ -54,23 +52,27 @@ export const menuItems = [
   {
     key: "0x38",
     value: "Binance",
-    icon: <BSCLogo />
+    icon: <BSCLogo />,
+    label: "Binance"
   },
-  // {
-  //   key: "0x61",
-  //   value: "Smart Chain Testnet",
-  //   icon: <BSCLogo />,
-  // },
+  {
+    key: "0x61",
+    value: "Smart Chain Testnet",
+    icon: <BSCLogo />,
+    label: "Smart Chain Testnet"
+  },
   {
     key: "0x89",
     value: "Polygon",
-    icon: <PolygonLogo />
+    icon: <PolygonLogo />,
+    label: "Polygon"
   },
-  // {
-  //   key: "0x13881",
-  //   value: "Mumbai",
-  //   icon: <PolygonLogo />
-  // }
+  {
+    key: "0x13881",
+    value: "Mumbai",
+    icon: <PolygonLogo />,
+    label: "Mumbai"
+  }
   // {
   //   key: "0xa86a",
   //   value: "Avalanche",
@@ -100,15 +102,7 @@ function Chains() {
     switchNetwork(e.key);
   };
 
-  const menu = (
-    <Menu onClick={handleMenuClick}>
-      {menuItems.map((item) => (
-        <Menu.Item key={item.key} icon={item.icon} style={styles.item}>
-          <span style={{ marginLeft: "5px" }}>{item.value}</span>
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  const menu = <Menu onClick={handleMenuClick} items={menuItems} style={styles.item} />;
 
   if (!chainId || !isAuthenticated) return null;
 

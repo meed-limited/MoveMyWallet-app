@@ -96,5 +96,9 @@
 
 .ant-transfer-list-content-item:hover {
   background-color: rgb(231 231 121) !important;
-  
+}
+
+.ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+height: 42px;
+gap: 5px
 }
