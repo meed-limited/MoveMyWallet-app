@@ -1,6 +1,6 @@
 // Insert your smart-contract addresses here:
 export const ASSEMBLY_NFT_ETHEREUM = "";
-export const ASSEMBLY_NFT_BSC = "0x1c9ab1642d36304B540a62e66DEfe0F4Bf21E256"; // OK & verified
+export const ASSEMBLY_NFT_BSC = "0x283f4b27508F8757C5a8200a57Bea0C0F6f59FFE"; // OK & verified
 export const ASSEMBLY_NFT_POLYGON = "0x3FcB9a9E4FC3f3B1bd24DC61350dA55C6448188D"; // OK & verified
 
 // Kept in case for testing puposes:

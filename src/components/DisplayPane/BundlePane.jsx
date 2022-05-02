@@ -132,8 +132,17 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
     try {
       const transaction = await Moralis.executeFunction(sendOptions);
       const receipt = await transaction.wait();
-      let id = receipt.events[3].args.tokenId.toString();
-      let nonce = parseInt(receipt.events[3].args.salt.toString());
+      let eventArr = receipt.events;
+
+      const assemblyEvent = eventArr.filter((event) => {
+        if (event.event === "AssemblyAsset") {
+          return event;
+        }
+      });
+
+      let id = assemblyEvent[0].args.tokenId.toString();
+      let nonce = parseInt(assemblyEvent[0].args.salt.toString());
+
       setTokenData([id, nonce, addressesArray, numbersArray]);
       saveBackupBundle(account, chainId, [id, nonce, addressesArray, numbersArray]);
       console.log("Bundle successfully created");
