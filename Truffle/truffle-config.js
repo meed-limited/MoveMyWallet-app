@@ -27,10 +27,23 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+    bsc_testnet: {
+      provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
+      network_id: 97
+      // confirmations: 2
+    },
     bsc_mainnet: {
       provider: () => new HDWalletProvider(mnemonic, `${API_KEY_BSC}`),
       network_id: 56,
       confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    polygon_mumbai: {
+      provider: () =>
+        new HDWalletProvider(mnemonic, `https://speedy-nodes-nyc.moralis.io/10779dfa6be84b2347366672/polygon/mumbai`),
+      network_id: 80001,
+      confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true
     },
@@ -40,8 +53,7 @@ module.exports = {
       confirmations: 5,
       timeoutBlocks: 200,
       skipDryRun: true,
-      maxFeePerGas: 80000000000,
-      maxPriorityFeePerGas: 79000000000
+      chainId: 137,
     }
   },
 
@@ -54,7 +66,7 @@ module.exports = {
         // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
           enabled: true,
-          runs: 200
+          runs: 150
         }
         // evmVersion: "byzantium"
       }
