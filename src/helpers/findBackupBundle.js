@@ -14,9 +14,9 @@ export const findBackupBundle = async (account, setTokenData) => {
 
   await query.get(res[0].id).then(backup => {
     console.log("Found backup bundle with tokenId "+backup.get("tokenId"))
-    const { tokenId, nonce, addressesArray, numbersArray } = backup.attributes;
+    const { tokenId, nonce, addressesArray, numbersArray, chainId } = backup.attributes;
     setTokenData([ tokenId, nonce, addressesArray, numbersArray]);
-    ret = true;
+    ret = { isBackup: true, chainId: chainId };
   })
   return ret
 }

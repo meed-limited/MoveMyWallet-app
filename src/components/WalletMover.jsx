@@ -105,15 +105,22 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
       checkIfBackupOnStart();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isWeb3Enabled, account, isAuthenticated]);
+  }, [isWeb3Enabled, account, isAuthenticated, chainId]);
 
-  const checkIfBackupOnStart = () => {
+  const checkIfBackupOnStart = async () => {
     findBackupBundle(account, setTokenData).then((foundBackup) => {
-      if (foundBackup) {
+      if (foundBackup.isBackup) {
         setDisplayPaneMode("transfer");
         const title = "Bundle Recovered";
         let msg = "We found an unsent bundle from your previous session";
         openNotification("info", title, msg);
+
+        // change chain request
+        window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: foundBackup.chainId }]
+        });
+
       } else {
         setDisplayPaneMode("start");
       }
