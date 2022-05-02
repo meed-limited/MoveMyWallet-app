@@ -55,24 +55,24 @@ export const menuItems = [
     icon: <BSCLogo />,
     label: "Binance"
   },
-  {
-    key: "0x61",
-    value: "Smart Chain Testnet",
-    icon: <BSCLogo />,
-    label: "Smart Chain Testnet"
-  },
+  // {
+  //   key: "0x61",
+  //   value: "Smart Chain Testnet",
+  //   icon: <BSCLogo />,
+  //   label: "Smart Chain Testnet"
+  // },
   {
     key: "0x89",
     value: "Polygon",
     icon: <PolygonLogo />,
     label: "Polygon"
   },
-  {
-    key: "0x13881",
-    value: "Mumbai",
-    icon: <PolygonLogo />,
-    label: "Mumbai"
-  }
+  // {
+  //   key: "0x13881",
+  //   value: "Mumbai",
+  //   icon: <PolygonLogo />,
+  //   label: "Mumbai"
+  // }
   // {
   //   key: "0xa86a",
   //   value: "Avalanche",

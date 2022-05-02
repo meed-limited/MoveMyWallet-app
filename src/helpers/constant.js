@@ -1,7 +1,7 @@
 // Insert your smart-contract addresses here:
 export const ASSEMBLY_NFT_ETHEREUM = "";
-export const ASSEMBLY_NFT_BSC = "0x1c9ab1642d36304B540a62e66DEfe0F4Bf21E256";
-export const ASSEMBLY_NFT_POLYGON = "0x3FcB9a9E4FC3f3B1bd24DC61350dA55C6448188D";
+export const ASSEMBLY_NFT_BSC = "0x1c9ab1642d36304B540a62e66DEfe0F4Bf21E256"; // OK & verified
+export const ASSEMBLY_NFT_POLYGON = "0x3FcB9a9E4FC3f3B1bd24DC61350dA55C6448188D"; // OK & verified
 
 // Kept in case for testing puposes:
 export const ASSEMBLY_NFT_MUMBAI = "0x8dB7B52f6Ad95dbC44Cb37fdAa84918462EDd3eC";
@@ -17,11 +17,12 @@ export const getContractAddress = (chainId) => {
     return ASSEMBLY_NFT_POLYGON;
   } else if (chainId === "0x38") {
     return ASSEMBLY_NFT_BSC;
-  } else if (chainId === "0x13881") {
-    return ASSEMBLY_NFT_MUMBAI;
-  } else if (chainId === "0x61") {
-    return ASSEMBLY_NFT_BSC_TESTNET;
   }
+  // else if (chainId === "0x13881") {
+  //   return ASSEMBLY_NFT_MUMBAI;
+  // } else if (chainId === "0x61") {
+  //   return ASSEMBLY_NFT_BSC_TESTNET;
+  // }
 };
 
 export const ABI = {

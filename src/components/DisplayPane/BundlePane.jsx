@@ -65,9 +65,6 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
   const { chainId, account } = useMoralis();
   const [serviceFee, setServiceFee] = useState();
   const contractAddress = getContractAddress(chainId);
-  const ethers = require("ethers");
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(contractAddress, ABI.abi, provider);
 
   const onBackClick = () => {
     onFinishSelection("nfts");
