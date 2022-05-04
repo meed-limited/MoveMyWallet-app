@@ -139,6 +139,8 @@ contract AssemblyNFT is
             }
             // revert anything else
             else revert("value sent do not match");
+        } else {
+            require(msg.value == _numbers[0], "value not match");
         }
 
         require(
