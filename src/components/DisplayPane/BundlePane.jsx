@@ -138,6 +138,7 @@ const BundlePane = ({ setTokenData, tokensToTransfer, NFTsToTransfer, setWaiting
         if (event.event === "AssemblyAsset") {
           return event;
         }
+        return event;
       });
 
       let id = assemblyEvent[0].args.tokenId.toString();

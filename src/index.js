@@ -2,13 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { MoralisProvider } from "react-moralis";
+import ReactGA from 'react-ga';
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
+const TRACKING_ID = process.env.REACT_APP_GOOGLE_ANALYTICS;
 
 const Application = () => {
+  ReactGA.initialize(TRACKING_ID);
   const isServerInfo = APP_ID && SERVER_URL ? true : false;
   //Validate
   if (!APP_ID || !SERVER_URL)
