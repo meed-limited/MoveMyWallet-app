@@ -8834,10 +8834,10 @@ moment@^2.29.2:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
 
-moralis@^1.5.11:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-1.5.11.tgz#6d89f09aeaa2bf5be77d8ed5da9f32ba8628d619"
-  integrity sha512-JmtW13miPDQ2LUr9KN3Lzh1ekjf5BUCPENx0peejipWVwPtA/AsW9iMK9/SyIrXGNDYPodcJcRMmh1voZ3fCrg==
+moralis@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-1.6.0.tgz#f86f303255ff7e39e9f13a49a76377bc0c2646d6"
+  integrity sha512-NMRJqtrtK7znND/IEro0EYsGVDahpFHxaCGGy/L3VnEyMURzB0OzvRrXshk6TZxG01mCOwrtO/h8L/t0OEOr3g==
   dependencies:
     "@babel/runtime" "7.16.7"
     "@babel/runtime-corejs3" "7.16.8"
