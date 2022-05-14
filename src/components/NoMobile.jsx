@@ -19,8 +19,8 @@ const styles = {
   },
   text: {
     color: "black",
-    fontSize: "30px",
-    fontWeight: "800",
+    fontSize: "22px",
+    fontWeight: "500",
     letterSpacing: "1px",
     padding: "60px"
   }
