@@ -47,7 +47,7 @@ const styles = {
 };
 
 function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
-  const { account, isAuthenticated, chainId, user, isWeb3Enabled } = useMoralis();
+  const { account, isInitialized, isAuthenticated, chainId, isWeb3Enabled } = useMoralis();
   const contractAddress = getContractAddress(chainId);
   const [tokensToTransfer, setTokensToTransfer] = useState();
   const [NFTsToTransfer, setNFTsToTransfer] = useState();
@@ -74,7 +74,7 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
 
   useEffect(() => {
     const launchApp = async () => {
-      if (isWeb3Enabled) {
+      if (isInitialized && isWeb3Enabled && account && contractAddress) {
         const admin = await getAdminAddress();
         setAdminAddress(admin);
         setIsAdminPaneOpen(false);
@@ -82,7 +82,7 @@ function WalletMover({ setAdminAddress, isAdminPaneOpen, setIsAdminPaneOpen }) {
     };
     launchApp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, isAuthenticated, isWeb3Enabled, user, contractAddress]);
+  }, [isInitialized, isWeb3Enabled, account, contractAddress]);
 
   useEffect(() => {
     setDisplayPaneMode("start");
