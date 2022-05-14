@@ -1,6 +1,7 @@
 /*eslint no-dupe-keys: "Off"*/
 import React, { useEffect, useState } from "react";
 import { useMoralis, useNFTBalances } from "react-moralis";
+import { useIPFS } from "hooks/useIPFS";
 import { useVerifyMetadata } from "hooks/useVerifyMetadata";
 import { Card, Image, Spin, Alert, Button } from "antd";
 const { Meta } = Card;
@@ -51,32 +52,33 @@ const styles = {
 };
 
 function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) {
-  const NFTsPerPage = 500;
+  const NFTsPerPage = 100;
+  const { chainId } = useMoralis();
+  const { getNFTBalances } = useNFTBalances({ chainId: chainId, limit: NFTsPerPage });
+  const { verifyMetadata } = useVerifyMetadata();
+  const { resolveLink } = useIPFS();
+  const [totalNFT, setTotalNFT] = useState();
   const [fetchedNFTs, setFetchedNFTs] = useState([]);
   const [selectedNFTs, setSelectedNFTs] = useState(NFTsToTransfer ?? []);
-  const { verifyMetadata } = useVerifyMetadata();
-  const [isNFTloading, setIsNFTLoading] = useState(true);
-  const { chainId } = useMoralis();
-  const { data: NFTBalances, isLoading, isFetching } = useNFTBalances({ chainId: chainId, limit: NFTsPerPage });
+  const [loading, setLoading] = useState(true);
+
+  const loadNFT = async () => {
+    var arr;
+    let page0 = await getNFTBalances({ params: { chainId: chainId } });
+    let page1 = await page0.next();
+    let page2 = await page1.next();
+    let page3 = await page2.next();
+    let page4 = await page3.next();
+    arr = page0.result.concat(page1.result, page2.result, page3.result, page4.result);
+    setTotalNFT(page0.total);
+    setFetchedNFTs(arr);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const cleanupFunction = () => {
-      if (!isLoading && !isFetching) {
-        addFetchedNFTs();
-      }
-    };
-    cleanupFunction();
+    loadNFT();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, isFetching]);
-
-  const addFetchedNFTs = () => {
-    if (NFTBalances) {
-      let nextFetchedNFTs = fetchedNFTs;
-      nextFetchedNFTs.push(...NFTBalances.result);
-      setFetchedNFTs(nextFetchedNFTs);
-      setIsNFTLoading(false);
-    }
-  };
+  }, []);
 
   const isNFTSelected = (currentNft) =>
     selectedNFTs.some((nft) => currentNft.token_id === nft.token_id && currentNft.token_address === nft.token_address);
@@ -110,10 +112,20 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
 
   const onBackClick = () => {
     onFinishSelection("tokens");
-  }
+  };
 
   const NFTMapper = (nft, index) => {
     nft = verifyMetadata(nft);
+    if (!nft.image) {
+      if (nft.metadata === null) {
+        console.log("No metadata found on this NFT.");
+      } else {
+        let data = JSON.parse(nft.metadata);
+        nft.metadata = data;
+        nft.image = resolveLink(nft.metadata.image);
+        nft.name = nft.metadata.name;
+      }
+    }
     return (
       <Card
         onClick={() => handleClickCard(nft)}
@@ -146,21 +158,21 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
       <div style={styles.text}>
         <p>Select NFTs to transfer</p>
       </div>
-      {fetchedNFTs?.length < NFTBalances?.total && (
+      {fetchedNFTs?.length < totalNFT?.total && (
         <Alert
           type='warning'
           closable={true}
           showIcon
-          message={`Sorry, you can only move the ${NFTsPerPage} shown here, you will have to carry out another transfer`}
+          message={`Sorry, we can only move the 500 NFTs shown here, you will have to carry out another transfer`}
         />
       )}
-      {NFTBalances?.total === 0 && <Alert type='info' showIcon message={"No NFTs found on this account"} />}
-      <div style={{ ...styles.NFTs, overflowY: isNFTloading ? "hidden" : "scroll" }}>
-        <Spin size='large' spinning={isNFTloading} />
+      {totalNFT?.total === 0 && <Alert type='info' showIcon message={"No NFTs found on this account"} />}
+      <div style={{ ...styles.NFTs, overflowY: loading ? "hidden" : "scroll" }}>
+        <Spin size='large' spinning={loading} />
         {fetchedNFTs && fetchedNFTs?.map(NFTMapper)}
       </div>
       <div style={styles.buttonDiv}>
-        <Button style={{...styles.button, float: "left", marginLeft: "50px" }} shape='round' onClick={onBackClick}>
+        <Button style={{ ...styles.button, float: "left", marginLeft: "50px" }} shape='round' onClick={onBackClick}>
           Back
         </Button>
         <Button style={styles.button} shape='round' onClick={onSelectAllNFTs}>
