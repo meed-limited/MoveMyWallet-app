@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useMoralis } from "react-moralis";
+import NoMobile from "components/NoMobile";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import WalletMover from "./components/WalletMover";
@@ -61,9 +62,23 @@ const styles = {
 };
 const App = () => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading, account } = useMoralis();
+  const [width, setWidth] = useState(window.innerWidth);
   const [isAdminPaneOpen, setIsAdminPaneOpen] = useState(false);
   const [adminAddress, setAdminAddress] = useState();
   const isAdmin = account?.toLowerCase() === adminAddress?.toLowerCase() ? true : false;
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
@@ -79,29 +94,32 @@ const App = () => {
 
   return (
     <Layout style={styles.layout}>
-      <Router>
-        <Header style={styles.header}>
-          <Logo />
-          <div style={styles.headerRight}>
-            {isAdmin && isAuthenticated && (
-              <div>
-                <Button style={styles.adminButton} shape='round' onClick={openAdminPane}>
-                  Admin Panel
-                </Button>
-              </div>
-            )}
-            <Chains />
-            <Account />
+      {isMobile && <NoMobile />}
+      {!isMobile && (
+        <Router>
+          <Header style={styles.header}>
+            <Logo />
+            <div style={styles.headerRight}>
+              {isAdmin && isAuthenticated && (
+                <div>
+                  <Button style={styles.adminButton} shape='round' onClick={openAdminPane}>
+                    Admin Panel
+                  </Button>
+                </div>
+              )}
+              <Chains />
+              <Account />
+            </div>
+          </Header>
+          <div style={styles.content}>
+            <WalletMover
+              setAdminAddress={setAdminAddress}
+              isAdminPaneOpen={isAdminPaneOpen}
+              setIsAdminPaneOpen={setIsAdminPaneOpen}
+            />
           </div>
-        </Header>
-        <div style={styles.content}>
-          <WalletMover
-            setAdminAddress={setAdminAddress}
-            isAdminPaneOpen={isAdminPaneOpen}
-            setIsAdminPaneOpen={setIsAdminPaneOpen}
-          />
-        </div>
-      </Router>
+        </Router>
+      )}
     </Layout>
   );
 };
