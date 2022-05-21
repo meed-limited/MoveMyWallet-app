@@ -4,8 +4,8 @@ export const ASSEMBLY_NFT_BSC = "0x283f4b27508F8757C5a8200a57Bea0C0F6f59FFE"; //
 export const ASSEMBLY_NFT_POLYGON = "0x3FcB9a9E4FC3f3B1bd24DC61350dA55C6448188D"; // OK & verified
 
 // For testing purposes:
-// export const ASSEMBLY_NFT_MUMBAI = "0x1492c28198760f4Eb74E57B22B6323693F91A332";
-// export const ASSEMBLY_NFT_BSC_TESTNET = "0x168AbaB241900159D2fcDA90C04Fb43B2aA89b77";
+export const ASSEMBLY_NFT_MUMBAI = "0x1492c28198760f4Eb74E57B22B6323693F91A332";
+export const ASSEMBLY_NFT_BSC_TESTNET = "0x168AbaB241900159D2fcDA90C04Fb43B2aA89b77";
 
 export const CHAINS_WITH_L3P_SUPPORT = ["0x1", "0x38"];
 export const L3P_TOKEN_ADDRESS = "0xdeF1da03061DDd2A5Ef6c59220C135dec623116d";
@@ -17,12 +17,11 @@ export const getContractAddress = (chainId) => {
     return ASSEMBLY_NFT_POLYGON;
   } else if (chainId === "0x38") {
     return ASSEMBLY_NFT_BSC;
+  } else if (chainId === "0x13881") {
+    return ASSEMBLY_NFT_MUMBAI;
+  } else if (chainId === "0x61") {
+    return ASSEMBLY_NFT_BSC_TESTNET;
   }
-  // else if (chainId === "0x13881") {
-  //   return ASSEMBLY_NFT_MUMBAI;
-  // } else if (chainId === "0x61") {
-  //   return ASSEMBLY_NFT_BSC_TESTNET;
-  // }
 };
 
 export const ABI = {

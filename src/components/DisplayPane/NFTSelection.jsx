@@ -65,11 +65,27 @@ function NFTSelection({ NFTsToTransfer, setNFTsToTransfer, onFinishSelection }) 
   const loadNFT = async () => {
     var arr;
     let page0 = await getNFTBalances({ params: { chainId: chainId } });
-    let page1 = await page0.next();
-    let page2 = await page1.next();
-    let page3 = await page2.next();
-    let page4 = await page3.next();
-    arr = page0.result.concat(page1.result, page2.result, page3.result, page4.result);
+    if (page0.result.length <= 100) {
+      arr = page0.result;
+    } else if (page0.result.length > 100 && page0.result.length <= 200) {
+      let page1 = await page0.next();
+      arr = page0.result.concat(page1.result);
+    } else if (page0.result.length > 200 && page0.result.length <= 300) {
+      let page1 = await page0.next();
+      let page2 = await page1.next();
+      arr = page0.result.concat(page1.result, page2.result);
+    } else if (page0.result.length > 300 && page0.result.length <= 400) {
+      let page1 = await page0.next();
+      let page2 = await page1.next();
+      let page3 = await page2.next();
+      arr = page0.result.concat(page1.result, page2.result, page3.result);
+    } else if (page0.result.length > 400) {
+      let page1 = await page0.next();
+      let page2 = await page1.next();
+      let page3 = await page2.next();
+      let page4 = await page3.next();
+      arr = page0.result.concat(page1.result, page2.result, page3.result, page4.result);
+    }
     setTotalNFT(page0.total);
     setFetchedNFTs(arr);
     setLoading(false);

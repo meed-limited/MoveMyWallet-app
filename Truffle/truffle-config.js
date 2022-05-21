@@ -31,8 +31,8 @@ module.exports = {
     },
     bsc_testnet: {
       provider: () => new HDWalletProvider(mnemonic, `${API_KEY_BSC_TESTNET}`),
-      network_id: 97
-      // confirmations: 2
+      network_id: 97,
+      confirmations: 2
     },
     bsc_mainnet: {
       provider: () => new HDWalletProvider(mnemonic, `${API_KEY_BSC}`),
