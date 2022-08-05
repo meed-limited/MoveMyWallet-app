@@ -12788,10 +12788,10 @@ tr46@~0.0.3:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
 
-truffle-plugin-verify@^0.5.26:
-  version "0.5.26"
-  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.5.26.tgz#5bdec00b83c6cea9448dc5807ccedc88c35399c2"
-  integrity sha512-TFpmh2vBNLLFo9GxV+vf91XPs5cox9C5yd+cTKeLF1j2e/C1izUsc+5upG7fLJhuDOvKMB8X8S8ELKmSKRh+/g==
+truffle-plugin-verify@^0.5.27:
+  version "0.5.27"
+  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.5.27.tgz#69fda17d900b9db5181842513995e0ca24604550"
+  integrity sha512-EY0quXTMY61to6UhLQHwsC2J4L93eqB3ehwCDh0/sWD0TLF2okdsQTXBVuim5exBtqR6I0KxZQvqApiBZWtaVA==
   dependencies:
     axios "^0.26.1"
     cli-logger "^0.5.40"
