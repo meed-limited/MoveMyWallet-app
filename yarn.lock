@@ -2136,17 +2136,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-<<<<<<< HEAD
 "@openzeppelin/contracts@^4.7.2":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.7.2.tgz#7587416fe2d35abf574193515b8971bfe9f64bc7"
   integrity sha512-4n/JL9izql8303mPqPdubuna/DWEMbmOzWYUWyCPhjhiEr2w3nQrjE7vZz1fBF+wzzP6dZbIcsgqACk53c9FGA==
-=======
-"@openzeppelin/contracts@^4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.7.0.tgz#3092d70ea60e3d1835466266b1d68ad47035a2d5"
-  integrity sha512-52Qb+A1DdOss8QvJrijYYPSf32GUg2pGaG/yCxtaA3cu4jduouTdg4XZSMLW9op54m1jH7J8hoajhHKOPsoJFw==
->>>>>>> 17a1d7e2504153cf43fa858df7663a017ac4edcb
 
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
@@ -2340,26 +2333,15 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-<<<<<<< HEAD
 "@truffle/hdwallet-provider@2.0.13":
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/@truffle/hdwallet-provider/-/hdwallet-provider-2.0.13.tgz#b7d9660985d7f32dc35dd5672c0156e3b9b39d32"
   integrity sha512-5sGsi9sScB4VkKEuD6itqkrvtpJUNVv0NhI07Nn1JAMDvkJmAAuh2GtoBElDq54y+0JCD8SI0T9BLVZ9IWj6AQ==
-=======
-"@truffle/hdwallet-provider@2.0.10":
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/@truffle/hdwallet-provider/-/hdwallet-provider-2.0.10.tgz#2b02baa580bc284c0f3691c7a400de0fff0dce52"
-  integrity sha512-0wOdWYciTEKy3doZCzkhcKbYN4QnwtLx/ihRelIsZZyklNe++fppOqjKKa4t+8t2g5r0Ji3i5xPFOc2CAdS+fQ==
->>>>>>> 17a1d7e2504153cf43fa858df7663a017ac4edcb
   dependencies:
     "@ethereumjs/common" "^2.4.0"
     "@ethereumjs/tx" "^3.3.0"
     "@metamask/eth-sig-util" "4.0.1"
-<<<<<<< HEAD
     ethereum-cryptography "1.1.2"
-=======
-    ethereum-cryptography "1.0.3"
->>>>>>> 17a1d7e2504153cf43fa858df7663a017ac4edcb
     ethereum-protocol "^1.0.1"
     ethereumjs-util "^7.1.5"
     ethereumjs-wallet "^1.0.2"
@@ -6120,11 +6102,7 @@ ethereumjs-util@^5.0.0, ethereumjs-util@^5.1.1, ethereumjs-util@^5.1.2, ethereum
     rlp "^2.0.0"
     safe-buffer "^5.1.1"
 
-<<<<<<< HEAD
 ethereumjs-util@^6.0.0, ethereumjs-util@^6.2.1:
-=======
-ethereumjs-util@^6.0.0, ethereumjs-util@^6.1.0, ethereumjs-util@^6.2.1:
->>>>>>> 17a1d7e2504153cf43fa858df7663a017ac4edcb
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/ethereumjs-util/-/ethereumjs-util-6.2.1.tgz#fcb4e4dd5ceacb9d2305426ab1a5cd93e3163b69"
   integrity sha512-W2Ktez4L01Vexijrm5EB6w7dg4n/TgpoYU4avuT5T3Vmnw/eCRtiBrJfQYS/DCSvDIOLn2k57GcHdeBcgVxAqw==
@@ -9149,10 +9127,10 @@ moment@^2.24.0, moment@^2.29.2:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
   integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
-moralis@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/moralis/-/moralis-1.9.1.tgz#6fcebabb0e0ce51a6d83b6466dab26605b68127a"
-  integrity sha512-2q758vHlInMXkYoLqh9/5ubQzQge4noPdj8ToWi8FzYYwuNjDUk2ZarLGUtrTVdQJ9HtrDTCEa7opEyB7xOsKA==
+moralis@1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/moralis/-/moralis-1.11.0.tgz#aa736cf5acbd3f65ac83d44f2e4e12e0e88566f8"
+  integrity sha512-oqoKqP47RuHq+SnztN48+YgWsKLt1YBy7IfeSBOixUW0Tzn9RQDjNKpkSBcKFttNZQ/KzCEes6TCqA9IxSoTPQ==
   dependencies:
     "@babel/runtime" "7.16.7"
     "@babel/runtime-corejs3" "7.16.8"
@@ -13071,17 +13049,10 @@ tr46@~0.0.3:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
 
-<<<<<<< HEAD
 truffle-plugin-verify@^0.5.27:
   version "0.5.27"
   resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.5.27.tgz#69fda17d900b9db5181842513995e0ca24604550"
   integrity sha512-EY0quXTMY61to6UhLQHwsC2J4L93eqB3ehwCDh0/sWD0TLF2okdsQTXBVuim5exBtqR6I0KxZQvqApiBZWtaVA==
-=======
-truffle-plugin-verify@^0.5.26:
-  version "0.5.26"
-  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.5.26.tgz#5bdec00b83c6cea9448dc5807ccedc88c35399c2"
-  integrity sha512-TFpmh2vBNLLFo9GxV+vf91XPs5cox9C5yd+cTKeLF1j2e/C1izUsc+5upG7fLJhuDOvKMB8X8S8ELKmSKRh+/g==
->>>>>>> 17a1d7e2504153cf43fa858df7663a017ac4edcb
   dependencies:
     axios "^0.26.1"
     cli-logger "^0.5.40"
