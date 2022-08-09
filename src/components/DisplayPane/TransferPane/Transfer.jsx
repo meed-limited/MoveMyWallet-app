@@ -83,7 +83,7 @@ const Transfer = ({ tokenData, onFinishSelection, getAddressFromTransfer, setWai
           </a>
         </>
       );
-      destroyBackupBundle(tokenData[0])
+      destroyBackupBundle(tokenData[0]);
       openNotification("success", title, msg);
       setWaiting(false);
       onFinishSelection();

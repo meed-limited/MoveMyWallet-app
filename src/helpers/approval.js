@@ -47,7 +47,6 @@ export const approveERC20contract = async (ERC20address, allowance, contractAddr
     let title = "ERC20 Approval set";
     let msg = `The allowance of your ERC20 token has been succesfully set to ${value}.`;
     openNotification("success", title, msg);
-    console.log(`ERC20 Approval set`);
   } catch (error) {
     let title = "ERC20 Approval denied";
     let msg = "Something went wrong, the allowance hasn't been set.";
@@ -85,7 +84,6 @@ export const approveNFTcontract = async (NFTaddress, contractAddress) => {
     let title = "NFT Approval set";
     let msg = "The allowance for your NFTs collection has been set.";
     openNotification("success", title, msg);
-    console.log("NFTs Approval set");
   } catch (error) {
     let title = "NFT Approval denied";
     let msg = "Something went wrong, the allowance hasn't been set.";

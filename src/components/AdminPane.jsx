@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Moralis } from "moralis";
+import Moralis from "moralis";
 import { useMoralis, useNativeBalance } from "react-moralis";
 import { openNotification } from "helpers/notifications";
 import { Button, Input } from "antd";
