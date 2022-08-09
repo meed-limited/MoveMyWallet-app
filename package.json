@@ -10,7 +10,6 @@
     "react": "^17.0.2",
     "react-blockies": "^1.4.1",
     "react-dom": "^17.0.2",
-    "react-error-overlay": "^6.0.11",
     "react-moralis": "1.4.0",
     "react-router": "5.3.1",
     "react-router-dom": "5.3.1",
@@ -44,9 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "resolutions": {
-    "react-error-overlay": "6.0.9"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.7.2",
