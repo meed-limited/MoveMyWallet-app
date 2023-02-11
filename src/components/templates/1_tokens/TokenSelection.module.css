@@ -1,0 +1,31 @@
+.text {
+    color: #eee;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 25px;
+    margin: 20px auto;
+}
+
+.tokenInputLine {
+    height: 30px;
+    background: #eee;
+    background: linear-gradient(
+        315deg,
+        rgba(69, 75, 205, 0.8) 0%,
+        rgba(69, 75, 205, 0.25) 50%,
+        rgba(69, 75, 205, 0.8) 100%
+    );
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    max-width: 100%;
+}
+
+.transfer {
+    margin: auto;
+    width: 100%;
+    padding: 20px;
+}

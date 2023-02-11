@@ -1,53 +1,43 @@
 {
-  "name": "move_your_wallet",
-  "version": "1.0.0",
-  "author": "Pedrojok01",
-  "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@walletconnect/web3-provider": "^1.8.0",
-    "antd": "^4.22.4",
-    "moralis": "1.11.0",
-    "react": "^17.0.2",
-    "react-blockies": "^1.4.1",
-    "react-dom": "^17.0.2",
-    "react-moralis": "1.4.0",
-    "react-router": "5.3.1",
-    "react-router-dom": "5.3.1",
-    "react-scripts": "4.0.3",
-    "yarn": "^1.22.19"
-  },
-  "scripts": {
-    "start": "set \"GENERATE_SOURCEMAP=false\" && react-scripts start ",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "devchain": "node Truffle/scripts/devChain.js",
-    "connect": "moralis-admin-cli connect-local-devchain",
-    "watch:events": "moralis-admin-cli add-contract",
-    "deploy": "node Truffle/scripts/deployContract.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@openzeppelin/contracts": "^4.7.3",
-    "@truffle/hdwallet-provider": "2.0.14",
-    "dotenv": "^16.0.2",
-    "truffle-plugin-verify": "^0.5.28"
-  }
+    "name": "move_my_wallet",
+    "version": "2.0.0",
+    "author": "Pedrojok01",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint --fix",
+        "prettier": "prettier --write \"**/*.{ts,tsx,js}\""
+    },
+    "dependencies": {
+        "@ant-design/icons": "^5.0.0",
+        "antd": "^5.1.4",
+        "ethers": "^5.7.2",
+        "mongoose": "^6.9.1",
+        "moralis": "^2.11.0",
+        "next": "13.1.6",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-jazzicon": "^1.0.4",
+        "sharp": "^0.31.3",
+        "wagmi": "^0.11.4"
+    },
+    "devDependencies": {
+        "@next/font": "^13.1.1",
+        "@types/lodash": "^4.14.191",
+        "@types/node": "^18.11.18",
+        "@types/react": "^18.0.26",
+        "@types/react-dom": "^18.0.10",
+        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "eslint": "^8.31.0",
+        "eslint-config-next": "^13.1.1",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-import-resolver-typescript": "^3.5.3",
+        "eslint-plugin-import": "^2.27.2",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.8.2",
+        "typescript": "^4.9.4"
+    }
 }

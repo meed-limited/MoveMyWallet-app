@@ -1,0 +1,36 @@
+.container {
+    background: linear-gradient(
+        315deg,
+        rgb(69, 75, 205) 0%,
+        rgba(159, 161, 198, 0.4) 50%,
+        rgba(223, 223, 228, 0.3) 100%
+    );
+    border-radius: 20px;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    margin: auto;
+    padding: 100px 0 60px 0;
+}
+
+.title {
+    color: white;
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.text {
+    color: black;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.resetButton {
+    background: white;
+    margin: 20px auto 0px auto;
+    padding: 5px 40px;
+    border: 0;
+    color: black;
+    font-weight: 600;
+}

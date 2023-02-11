@@ -1,0 +1,13 @@
+node_modules
+build/
+.next/
+gasReporterOutput.json
+yarn.lock
+package-lock.json
+
+hardhat/coverage*
+hardhat/artifacts/*
+hardhat/typechain-types
+hardhat/typechain-types/*
+hardhat/cache/*
+hardhat/node_modules

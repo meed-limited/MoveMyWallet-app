@@ -1,0 +1,30 @@
+.button {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    border: 1px solid #d9d9d9;
+}
+
+.selectorTitle {
+    margin-left: 5px;
+}
+
+.chainItem {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.chainLogo {
+    padding-top: 5px;
+}
+.chainName {
+    margin-right: 5px;
+}
+
+.iconeToShow {
+    display: inline-flex;
+    align-items: center;
+}

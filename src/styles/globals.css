@@ -1,0 +1,311 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Sora, sans-serif;
+}
+
+html,
+body {
+    min-height: 100vh;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.layout {
+    width: 100vw;
+    height: 100vh;
+    background: url("../../public/images/background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    color: #041836;
+    margin-top: 90px;
+    padding: 1rem 3rem;
+    gap: 25px;
+}
+
+.steps-pane {
+    flex: 1;
+    display: flex;
+    height: 100%;
+    min-width: 350px;
+}
+
+.display-pane {
+    flex: 2;
+    height: 100%;
+    min-width: 550px;
+}
+
+.pane {
+    position: relative;
+    background: rgb(118, 123, 223);
+    background: linear-gradient(
+        315deg,
+        rgba(69, 75, 205, 1) 0%,
+        rgba(159, 161, 198, 0.4) 50%,
+        rgba(223, 223, 228, 0.3) 100%
+    );
+    border-radius: 20px;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.small-pane {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    flex-direction: column;
+    padding: 30px;
+
+    border-radius: 20px;
+    width: 90%;
+
+    text-align: center;
+    margin: auto;
+    background: linear-gradient(
+        315deg,
+        rgb(69, 75, 205) 0%,
+        rgba(159, 161, 198, 0.4) 50%,
+        rgba(223, 223, 228, 0.3) 100%
+    );
+}
+
+.pane-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 30px;
+    height: 100%;
+}
+
+.modal_title {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+@media (width < 1050px) {
+    .steps-pane {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (width < 650px) {
+    .content {
+        padding: 1rem 0.5rem;
+    }
+    .pane-content {
+        padding: 30px 5px;
+    }
+    .display-pane {
+        min-width: 350px;
+    }
+}
+
+/*************************************************************
+                            BUTTONS 
+*************************************************************/
+
+.button-black-big {
+    width: 50%;
+    height: 50px;
+    margin: 20px 20px;
+    border: 0;
+    background: black;
+    min-width: 250px;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+.button-black-big:hover {
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+    color: white !important;
+}
+
+.button-small {
+    margin: 10px 10px;
+    padding: 5px 30px;
+    min-width: 100px;
+    border: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.black {
+    background: black;
+    color: white;
+}
+
+.white {
+    background: white;
+    color: black;
+}
+
+.button-align-right {
+    margin: 0.7rem 30px 0 0;
+    text-align: right;
+    width: 100%;
+}
+
+/*************************************************************
+                       OVERRIDE ANTD 
+*************************************************************/
+
+/* Antd steps */
+.ant-steps-item {
+    white-space: inherit;
+}
+
+.ant-steps-item-title {
+    font-size: 20px !important;
+    color: white !important;
+}
+
+@media (width < 900px) {
+    .ant-steps-item-title {
+        font-size: 15px !important;
+    }
+}
+
+@media (width < 800px) {
+    .ant-steps-item-title {
+        font-size: 11px !important;
+    }
+}
+@media (width < 650px) {
+    .ant-steps-item-title {
+        font-size: 9px !important;
+    }
+}
+
+.ant-steps-item-description {
+    font-size: 14px !important;
+    color: black !important;
+}
+
+@media (width < 549px) {
+    .ant-steps-item-description {
+        font-size: 10px !important;
+    }
+}
+
+.ant-steps-item-icon {
+    background-color: white !important;
+    border-color: transparent !important;
+}
+
+.ant-steps-icon {
+    font-size: medium;
+    font-weight: 600 !important;
+    color: black !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-icon {
+    border-color: rgb(37, 21, 252) !important;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+    background-color: black !important;
+    border-color: rgb(37, 21, 252) !important;
+}
+
+.ant-steps-item-process .ant-steps-icon {
+    color: white !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+    background-color: black !important;
+}
+
+.ant-steps-item-finish .ant-steps-icon {
+    color: white !important;
+}
+
+.ant-steps-item-tail::after {
+    background-color: white !important;
+}
+
+/* Antd transfer */
+.ant-transfer-list-header {
+    background: transparent !important;
+    color: #fff !important;
+    border: 0 !important;
+}
+
+.ant-transfer-operation .ant-btn .anticon {
+    font-size: 30px !important;
+    height: 100%;
+    margin-top: 35px;
+    text-align: center;
+    color: white !important;
+}
+
+.ant-transfer-list-content-item-remove {
+    font-size: 20px !important;
+}
+
+.ant-transfer-list-content-item-checked {
+    background-color: rgb(231 231 121) !important;
+}
+
+.ant-transfer-list-content-item:hover {
+    background-color: rgb(231 231 121) !important;
+}
+
+.ant-btn-icon-only.ant-btn-sm {
+    width: 30px !important;
+    height: 100px !important;
+    padding: 0px 0 39px 0 !important;
+}
+
+/* Antd spin */
+.ant-spin-nested-loading,
+.ant-spin-container {
+    height: 100% !important;
+}
+
+.ant-spin-nested-loading > div > .ant-spin {
+    display: flex !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.ant-spin-nested-loading .ant-spin-container::after {
+    border-radius: 20px !important;
+}

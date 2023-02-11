@@ -1,0 +1,13 @@
+.smallContainer {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text {
+    color: black;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}

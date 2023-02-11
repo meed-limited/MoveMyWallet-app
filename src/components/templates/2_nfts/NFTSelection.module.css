@@ -1,0 +1,19 @@
+.NFTs {
+    overflow-x: hidden;
+    max-height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    gap: 15px;
+}
+
+.text {
+    color: #eee;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 25px;
+    margin: 20px auto;
+}

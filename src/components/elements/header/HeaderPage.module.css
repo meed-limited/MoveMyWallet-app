@@ -1,0 +1,46 @@
+.header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 35px 0 0;
+    background: transparent !important;
+    z-index: 10;
+}
+
+.logo {
+    width: 21vw;
+    min-width: 120px;
+    height: auto;
+    padding-top: 35px;
+}
+
+.headerRight {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+@media (width < 1050px) {
+    .header {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        padding: 15px 10px !important;
+    }
+    .headerRight {
+        gap: 0.5rem;
+    }
+    .logo {
+        width: 200px;
+    }
+}
+
+@media (width < 550px) {
+    .header {
+        padding: 15px 5px !important;
+    }
+    .logo {
+        min-width: 50px;
+        width: 60px;
+        padding-top: 26px;
+    }
+}

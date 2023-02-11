@@ -1,0 +1,20 @@
+.startPane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.text {
+    color: #eee;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 35px;
+    margin: 20px auto;
+}
+
+.buttonDiv {
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+}

@@ -1,0 +1,110 @@
+.connectButton {
+    height: 40px;
+    padding: 0 20px;
+    text-align: center;
+    font-weight: 600;
+    border: none;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background: black;
+    color: white;
+    border-radius: 20px;
+    z-index: 1 !important;
+}
+
+.connectButton:hover {
+    transform: scale(1.02);
+    color: white !important;
+}
+
+/* ADDRESS */
+
+.address {
+    display: flex;
+    height: 42px;
+    padding-left: 15px;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+    align-items: center;
+    font-size: 17px;
+}
+
+/* CONNECT MODAL */
+
+.connectorButton {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-block: 5px;
+    margin-inline: 15px;
+    margin-bottom: 10px;
+    background: rgba(238, 238, 238, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 5px rgba(0, 0, 0, 0.25), inset 0px 0px 10px #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.connectorButton:hover {
+    background-color: #d8f1d0;
+}
+
+.connectButtonText {
+    font-weight: 500;
+    padding-left: 25px;
+    letter-spacing: 1px;
+}
+
+.connectedAddress {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 42px;
+    padding: 0 15px;
+    width: fit-content;
+    border-radius: 7px;
+}
+
+.connectedAddressText {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    color: #21bf96;
+}
+
+.connectModalBottom {
+    margin: auto;
+    font-size: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    color: #667085;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+.connectModalBottomText {
+    text-align: center;
+    font-size: 10px;
+}
+
+/* DISCONNECT MODAL */
+
+.disconnectButton {
+    width: 100%;
+    margin: 15px auto;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: black;
+    color: white;
+}
+
+.disconnectButton:hover {
+    background-color: rgb(44, 44, 44) !important;
+}
