@@ -12,12 +12,12 @@ export const SUPPORTED_CHAIN = {
     testnet: [5, 97, 80001],
 };
 
-// Insert your smart-contract addresses here:
+// Production:
 export const MOVE_MY_WALLET_ETHEREUM = "0x1d7bcd9CfAA5A9BBBE715Db1Ec7aC7388bf4Aa0d"; // Still OLD version with fees
 export const MOVE_MY_WALLET_BSC = "0x64B0ba5FB8df536aD40BAEA72994d3C8C79d137C"; // OK & verified
 export const MOVE_MY_WALLET_POLYGON = "0x5Bc35d7Fd9c8B21BEb9257B04128b18CAf794D3C"; // OK & verified
 
-// For testing purposes:
+// Development:
 export const MOVE_MY_WALLET_GOERLI = "0xfB3F6008949358DcDAb3229c99aB3adf352345f9"; // OK & verified
 export const MOVE_MY_WALLET_MUMBAI = "0xa103518FD4Ab9dC47527D6A430cBd82e1eF4C200"; // OK & verified
 export const MOVE_MY_WALLET_BSC_TESTNET = "0x0A8f1B95D33CDb475E3d00Ddb3f4A692382Ec248"; // OK & verified
