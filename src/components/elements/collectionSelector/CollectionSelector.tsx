@@ -15,18 +15,16 @@ const CollectionSelector: FC<CollectionSelectorProps> = ({ setNftsDisplayed }) =
     const [label, setLabel] = useState<JSX.Element>();
 
     const IconToShow = (collec: string) => {
-        const thumbnail = userNFTs.nfts.find((item) => item.token_address.toLowerCase() === collec.toLowerCase());
-        if (thumbnail) {
-            const nft = verifyMetadata(thumbnail);
-            return <img className={styles.thumbnail} src={nft.image} />;
+        const randomNft = userNFTs.nfts.find((item) => item.token_address.toLowerCase() === collec.toLowerCase());
+        if (randomNft) {
+            const metadata = verifyMetadata(randomNft);
+            return <img className={styles.thumbnail} src={metadata.image} />;
         } else return <>Loading...</>;
     };
 
-    const items: Item[] = useMemo(() => {
-        return collections.map((item) => {
-            return { label: item.name, key: item.token_address.toLowerCase(), icon: IconToShow(item.token_address) };
-        });
-    }, []);
+    const items: Item[] = collections.map((item) => {
+        return { label: item.name, key: item.token_address.toLowerCase(), icon: IconToShow(item.token_address) };
+    });
 
     const onClick: MenuProps["onClick"] = async ({ key }) => {
         setSelected(
