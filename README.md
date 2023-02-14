@@ -19,7 +19,7 @@ Cross-chain Dapp deployed on Ethereum, Binance Smart-Chain and Polygon. Allow an
 -   Dapp: https://app.movemywallet.com/
     <br></br>
 
-![Preview](https://github.com/Pedrojok01/storage/blob/main/preview.gif)
+![Preview](https://drive.google.com/file/d/1SkavMwycC385qO7eSES47CpwmtqfY1x5/view?usp=share_link)
 
 ## Front-end Installation
 
