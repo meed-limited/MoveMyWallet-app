@@ -1,10 +1,11 @@
+import { FC, useMemo, useState } from "react";
+
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
-import { FC, useMemo, useState } from "react";
-import { useUserData } from "../../../context/UserContextProvider";
-import { useFetchCollectionNFTs, useVerifyMetadata } from "../../../hooks";
 
 import styles from "./CollectionSelector.module.css";
+import { useUserData } from "../../../context/UserContextProvider";
+import { useFetchCollectionNFTs, useVerifyMetadata } from "../../../hooks";
 
 const CollectionSelector: FC<CollectionSelectorProps> = ({ setNftsDisplayed }) => {
     const { address, chainId, collections, userNFTs } = useUserData();

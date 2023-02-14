@@ -1,10 +1,10 @@
 import { configureChains, createClient, goerli, mainnet } from "wagmi";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { bsc, bscTestnet, polygon, polygonMumbai } from "wagmi/chains";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 import { isProdEnv } from "./data/constant";
 
