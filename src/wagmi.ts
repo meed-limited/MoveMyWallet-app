@@ -1,5 +1,6 @@
-import { configureChains, createClient } from "wagmi";
-import { polygon, polygonMumbai } from "wagmi/chains";
+import { configureChains, createClient, goerli, mainnet } from "wagmi";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { bsc, bscTestnet, polygon, polygonMumbai } from "wagmi/chains";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
@@ -8,13 +9,32 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { isProdEnv } from "./data/constant";
 
 const alchemyApiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
-if (!alchemyApiKey) {
-    throw new Error("NEXT_PUBLIC_ALCHEMY_API_KEY is not defined");
+const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+const bscNode = process.env.NEXT_PUBLIC_API_NODE_BSC;
+const bscTestNode = process.env.NEXT_PUBLIC_API_NODE_BSC_TEST;
+
+if (!alchemyApiKey || !projectId || !bscNode || !bscTestNode) {
+    throw new Error("Some ENV variables are not defined");
 }
 
 const { chains, provider, webSocketProvider } = configureChains(
-    [polygonMumbai, polygon, ...(isProdEnv ? [polygonMumbai] : [polygon])],
-    [alchemyProvider({ apiKey: alchemyApiKey })]
+    [
+        mainnet,
+        goerli,
+        polygon,
+        polygonMumbai,
+        bsc,
+        bscTestnet,
+        ...(isProdEnv ? [mainnet, polygon, bsc] : [goerli, polygonMumbai, bscTestnet]),
+    ],
+    [
+        alchemyProvider({ apiKey: alchemyApiKey, priority: 0 }),
+        jsonRpcProvider({
+            rpc: () => ({
+                http: isProdEnv ? bscNode : bscTestNode,
+            }),
+        }),
+    ]
 );
 
 export const client = createClient({
@@ -32,7 +52,7 @@ export const client = createClient({
             options: {
                 qrcode: true,
                 version: "2",
-                projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "",
+                projectId: projectId,
             },
         }),
     ],
