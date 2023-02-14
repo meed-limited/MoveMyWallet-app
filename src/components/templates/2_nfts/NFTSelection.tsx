@@ -1,19 +1,21 @@
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 
 import { Alert, Button } from "antd";
 
 import styles from "./NFTSelection.module.css";
 import { useUserData } from "../../../context/UserContextProvider";
 import { useSpamFilter } from "../../../hooks";
-import { DisplayNFT } from "../../elements";
+import { CollectionSelector, DisplayNFT } from "../../elements";
 
 const NFTSelection: FC<NFTProps> = ({ NFTsToTransfer, setNFTsToTransfer }) => {
     const { userNFTs, setDisplayPaneMode } = useUserData();
     const { nfts } = useSpamFilter();
+    const [nftsDisplayed, setNftsDisplayed] = useState<NFTinDB[]>([]);
     const [selectedNFTs, setSelectedNFTs] = useState(NFTsToTransfer ?? []);
 
-    console.log("BEFORE: ", userNFTs.nfts.length);
-    console.log("AFTER: ", nfts.total);
+    useEffect(() => {
+        setNftsDisplayed(nfts.nfts);
+    }, [nfts]);
 
     const isNFTSelected = useCallback(
         (currentNft: NFTinDB) =>
@@ -39,16 +41,12 @@ const NFTSelection: FC<NFTProps> = ({ NFTsToTransfer, setNFTsToTransfer }) => {
     );
 
     const onSelectAllNFTs = useCallback(() => {
-        if (selectedNFTs.length < nfts.nfts.length) {
-            setSelectedNFTs(nfts.nfts);
-        } else {
-            setSelectedNFTs([]);
-        }
-    }, [selectedNFTs, nfts.nfts, setSelectedNFTs]);
+        setSelectedNFTs(selectedNFTs.length < nftsDisplayed?.length ? nftsDisplayed : []);
+    }, [selectedNFTs, nftsDisplayed]);
 
     const selectButtonText = useMemo(() => {
-        return selectedNFTs.length < nfts.nfts.length ? "Select All" : "Deselect All";
-    }, [selectedNFTs, nfts.nfts]);
+        return selectedNFTs.length < nftsDisplayed?.length ? "Select All" : "Deselect All";
+    }, [selectedNFTs, nftsDisplayed]);
 
     const onValidateNFTSelection = () => {
         setNFTsToTransfer(selectedNFTs);
@@ -61,9 +59,14 @@ const NFTSelection: FC<NFTProps> = ({ NFTsToTransfer, setNFTsToTransfer }) => {
 
     return (
         <div className="pane-content">
-            <p className={styles.text}>Select NFTs to transfer</p>
+            <div className={styles.title}>
+                <p className={styles.text}>Select NFTs to transfer or</p>
+                <div className={styles.selector}>
+                    <CollectionSelector setNftsDisplayed={setNftsDisplayed} />
+                </div>
+            </div>
 
-            {userNFTs.total !== 0 && (
+            {userNFTs?.total !== 0 && (
                 <Alert
                     type="warning"
                     closable={true}
@@ -74,32 +77,31 @@ const NFTSelection: FC<NFTProps> = ({ NFTsToTransfer, setNFTsToTransfer }) => {
                 />
             )}
 
-            {userNFTs && userNFTs.total > 500 && (
+            {/* {userNFTs && userNFTs.total > 500 && (
                 <Alert
                     type="info"
                     closable={true}
                     showIcon
                     message={`You can only move the first 500 NFTs shown here. You will have to carry out another transfer for the rest.`}
                 />
-            )}
+            )} */}
 
             {userNFTs && userNFTs.total === 0 && (
                 <Alert type="info" showIcon message={"No NFTs found on this account"} />
             )}
 
             <div className={styles.NFTs} style={{ overflowY: "scroll" }}>
-                {nfts &&
-                    nfts.nfts?.map((nft, index) => {
-                        return (
-                            <DisplayNFT
-                                key={`${nft.token_id}-${nft.token_address}`}
-                                item={nft}
-                                index={index}
-                                isNFTSelected={isNFTSelected}
-                                handleClickCard={handleClickCard}
-                            />
-                        );
-                    })}
+                {nftsDisplayed?.map((nft, index) => {
+                    return (
+                        <DisplayNFT
+                            key={`${nft.token_id}-${nft.token_address}`}
+                            item={nft}
+                            index={index}
+                            isNFTSelected={isNFTSelected}
+                            handleClickCard={handleClickCard}
+                        />
+                    );
+                })}
             </div>
             <div className="button-align-right">
                 <Button

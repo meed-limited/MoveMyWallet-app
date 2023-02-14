@@ -4,6 +4,7 @@ export * from "./useContractExecution";
 export * from "./useMongoDB";
 export * from "./useMultipleApprovals";
 export * from "./useIPFS";
+export * from "./useFetchCollectionNFTs";
 export * from "./useSignerOrProvider";
 export * from "./useSpamFilter";
 export * from "./useSupportedChains";

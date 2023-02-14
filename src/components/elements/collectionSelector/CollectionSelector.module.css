@@ -1,0 +1,32 @@
+.button {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    border: 1px solid #d9d9d9;
+}
+
+.selectorTitle {
+    margin-left: 5px;
+}
+
+.collectionItem {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.collectionLogo {
+    padding-top: 7px;
+}
+.collectionName {
+    margin-right: 5px;
+}
+
+.thumbnail {
+    display: inline-flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}

@@ -12,7 +12,7 @@ type Props = {
 
 const UserDataProvider: FC<Props> = ({ children }) => {
     const { address, isConnected } = useAccount();
-    const { balances, userNFTs, syncWeb3 }: Web3Data = useWeb3Data();
+    const { balances, userNFTs, collections, syncWeb3 }: Web3Data = useWeb3Data();
     const { displayPaneMode, setDisplayPaneMode, resetDisplayPane } = useDisplayPane();
     const { chain } = useNetwork();
     const chainId: number = chain !== undefined ? chain.id : 1;
@@ -25,6 +25,7 @@ const UserDataProvider: FC<Props> = ({ children }) => {
                 isConnected,
                 balances,
                 userNFTs,
+                collections,
                 syncWeb3,
                 displayPaneMode,
                 setDisplayPaneMode,

@@ -28,9 +28,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).json({ success: false, message: "MORALIS_API_KEY is not defined" });
     }
 
-    const { account, chainId } = req.body;
+    const { account, chainId, collection } = req.body;
 
-    if (!account || !chainId) {
+    if (!account || !chainId || !collection) {
         return res.status(400).json({ success: false, message: "Missing parameters" });
     }
 
@@ -48,12 +48,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     try {
-        console.log(`REQUEST MORALIS DATA FOR USER ${account}`);
+        console.log(`REQUEST NFT FOR COLLECTION ${collection}`);
 
         // Fetch user NFTs
         const tx = await Moralis.EvmApi.nft.getWalletNFTs({
             address: account,
             chain: moralisChain,
+            tokenAddresses: [collection],
             disableTotal: false,
         });
 
@@ -73,41 +74,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         nfts = nfts.flat();
-        const userNfts = { nfts: nfts, total: total ?? 0 };
-
-        // Fetch all NFT collection owned by user
-        const response_collections = await Moralis.EvmApi.nft.getWalletNFTCollections({
-            address: account,
-            chain: moralisChain,
-        });
-
-        const collections = response_collections.raw.result;
-
-        // Fetch user native's balance
-        const response_Native = await Moralis.EvmApi.balance.getNativeBalance({
-            address: account,
-            chain: moralisChain,
-        });
-
-        const nativeBalance = response_Native.raw.balance;
-
-        // Fetch all ERC20 tokens owned by the user
-        const response_Token = await Moralis.EvmApi.token.getWalletTokenBalances({
-            address: account,
-            chain: moralisChain,
-        });
-
-        const tokenBalance = response_Token.toJSON();
 
         res.status(200).json({
             success: true,
             message: "Moralis data fetched successfully!",
-            data: {
-                userNfts: userNfts,
-                collections: collections,
-                nativeBalance: nativeBalance,
-                tokenBalance: tokenBalance,
-            },
+            data: nfts,
         });
     } catch (error) {
         console.error(error);

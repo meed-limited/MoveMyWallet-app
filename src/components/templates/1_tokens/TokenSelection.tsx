@@ -25,7 +25,7 @@ const TokenSelection: FC<TokenProps> = ({ tokensToTransfer, setTokensToTransfer 
     const { balances, setDisplayPaneMode } = useUserData();
     const [selectedTokensKeys, setSelectedTokenKeys] = useState<string[]>([]);
 
-    const ERC20tokens = balances.token.map((item) => ({
+    const ERC20tokens = balances?.token?.map((item) => ({
         ...item,
         balance: Number(item.balance),
         key: item.symbol,
@@ -33,11 +33,11 @@ const TokenSelection: FC<TokenProps> = ({ tokensToTransfer, setTokensToTransfer 
     }));
 
     useEffect(() => {
-        if (balances.token) {
+        if (balances?.token) {
             prepareTransferData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [balances.token]);
+    }, [balances?.token]);
 
     const prepareTransferData = () => {
         if (tokensToTransfer) {
@@ -68,10 +68,10 @@ const TokenSelection: FC<TokenProps> = ({ tokensToTransfer, setTokensToTransfer 
         setDisplayPaneMode("nfts");
     };
 
-    const selectButtonText = selectedTokensKeys.length >= ERC20tokens.length ? "Deselect All" : "Select All";
+    const selectButtonText = selectedTokensKeys.length >= ERC20tokens?.length ? "Deselect All" : "Select All";
 
     const onSelectAllTokens = () => {
-        if (selectedTokensKeys.length < ERC20tokens.length) {
+        if (selectedTokensKeys.length < ERC20tokens?.length) {
             setSelectedTokenKeys(ERC20tokens.map((token) => token.key));
         } else {
             setSelectedTokenKeys([]);

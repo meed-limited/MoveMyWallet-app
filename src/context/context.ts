@@ -5,6 +5,7 @@ const UserContext = createContext<UserContext>({
     isConnected: false,
     balances: { native: "0", token: [] },
     userNFTs: { nfts: [], total: 0 },
+    collections: [],
     // eslint-disable-next-line
     syncWeb3: () => {},
     displayPaneMode: "start",

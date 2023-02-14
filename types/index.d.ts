@@ -8,6 +8,7 @@ interface UserContext {
     isConnected: boolean;
     balances: UserBalances;
     userNFTs: Nfts;
+    collections: Collections;
     syncWeb3: () => void;
     displayPaneMode: DisplayPane;
     setDisplayPaneMode: Dispatch<SetStateAction<DisplayPane>>;
@@ -17,6 +18,7 @@ interface UserContext {
 interface Web3Data {
     balances: UserBalances;
     userNFTs: Nfts;
+    collections: Collections;
     syncWeb3: () => void;
 }
 
@@ -234,4 +236,25 @@ interface TokenData {
     salt: number;
     addresses: string[];
     numbers: string[];
+}
+
+interface Collection {
+    token_address: string;
+    contract_type: string;
+    name: string;
+    symbol: string;
+}
+
+type Collections = Collection[];
+
+type MenuItem = Required<MenuProps>["items"][number];
+
+interface Item {
+    label: string;
+    key: string;
+    icon: JSX.Element;
+}
+
+interface CollectionSelectorProps {
+    setNftsDisplayed: React.Dispatch<React.SetStateAction<NFTinDB[]>>;
 }

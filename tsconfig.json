@@ -23,7 +23,8 @@
         "next-env.d.ts",
         "types/index.d.ts",
         "**/*.ts",
-        "**/*.tsx"
+        "**/*.tsx",
+        "src/hooks/useVerifyMetadata.ts.OLDER"
     ],
     "exclude": [
         "node_modules",

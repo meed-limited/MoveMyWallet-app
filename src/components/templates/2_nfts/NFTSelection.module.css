@@ -1,3 +1,15 @@
+.title {
+    display: inline-flex;
+    gap: 1rem;
+    width: 95%;
+    justify-content: center;
+}
+
+.selector {
+    display: inline-flex;
+    align-items: center;
+}
+
 .NFTs {
     overflow-x: hidden;
     max-height: 90%;
@@ -15,5 +27,5 @@
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 25px;
-    margin: 20px auto;
+    margin-block: 20px;
 }

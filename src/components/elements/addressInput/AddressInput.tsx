@@ -18,7 +18,6 @@ const AddressInput: React.FC<any> = (props) => {
 
     useEffect(() => {
         if (validatedAddress) props.onChange(isDomain ? validatedAddress : address);
-        return;
     }, [props, validatedAddress, isDomain, address]);
 
     const updateAddress = useCallback(async (value: string) => {
@@ -112,22 +111,5 @@ const AddressInput: React.FC<any> = (props) => {
         </>
     );
 };
-
-// function isSupportedDomain(domain: string) {
-//     return [".eth", ".crypto", ".coin", ".wallet", ".bitcoin", ".x", ".888", ".nft", ".dao", ".blockchain"].some(
-//         (tld) => domain.endsWith(tld)
-//     );
-// }
-
-// // returns the checksummed address if the address is valid, otherwise returns false
-// function isAddress(value: any): string | false {
-//     try {
-//         // Alphabetical letters must be made lowercase for getAddress to work.
-//         // See documentation here: https://docs.ethers.io/v5/api/utils/address/
-//         return utils.getAddress(value.toLowerCase());
-//     } catch {
-//         return false;
-//     }
-// }
 
 export default AddressInput;

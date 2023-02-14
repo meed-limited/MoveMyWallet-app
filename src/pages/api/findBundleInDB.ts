@@ -3,6 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import BundleSchema from "../../data/models/bundleSchema";
 import { connectToDb, disconnectFromDb } from "../../utils/connectToMongoDb";
 
+const mongodbUri = process.env.MONGODB_URI;
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         console.log(`RETRIEVING BUNDLE IN MONGO DB, IF ANY...`);
@@ -11,8 +13,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         if (!address) {
             return res.status(500).json({ error: "address is not defined" });
         }
-
-        const mongodbUri = process.env.MONGODB_URI;
 
         if (!mongodbUri) {
             return res.status(500).json({ error: "MONGODB_URI is not defined" });
