@@ -1,6 +1,8 @@
 <div align="center">
 <img src="./public/images/MMW_Logo.png"  width="500px" />
+
 <br><br>
+
 <h1><strong>Transfer all the assets from one wallet to another easily.</strong></h1>
 
 [![Stargazers](https://img.shields.io/github/stars/shamrockstudios/MoveMyWallet-app)](https://github.com/shamrockstudios/MoveMyWallet-app/stargazers)
@@ -17,7 +19,7 @@ Cross-chain Dapp deployed on Ethereum, Binance Smart-Chain and Polygon. Allow an
 -   Dapp: https://app.movemywallet.com/
     <br></br>
 
-![Preview](./public/images/preview.png)
+![Preview](https://github.com/Pedrojok01/storage/blob/main/preview.gif)
 
 ## Front-end Installation
 
