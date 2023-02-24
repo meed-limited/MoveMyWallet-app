@@ -214,6 +214,13 @@ interface StepsPaneProps {
     NFTsToTransfer: NFTinDB[];
 }
 
+interface DisplayNFTProps {
+    item: NFTinDB;
+    index: number;
+    isNFTSelected: (currentNft: NFTinDB) => boolean;
+    handleClickCard: (clickedNFT: NFTinDB) => void;
+}
+
 interface BundleArrays {
     addressesArray: string[];
     numbersArray: (number | string)[];

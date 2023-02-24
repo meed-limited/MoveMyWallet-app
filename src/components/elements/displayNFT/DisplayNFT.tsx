@@ -6,13 +6,6 @@ import { useVerifyMetadata, useWindowWidthAndHeight } from "../../../hooks";
 
 const { Meta } = Card;
 
-interface DisplayNFTProps {
-    item: NFTinDB;
-    index: number;
-    isNFTSelected: (currentNft: NFTinDB) => boolean;
-    handleClickCard: (clickedNFT: NFTinDB) => void;
-}
-
 const DisplayNFT: FC<DisplayNFTProps> = ({ item, index, isNFTSelected, handleClickCard }) => {
     const { isTablet } = useWindowWidthAndHeight();
     const { verifyMetadata } = useVerifyMetadata();
