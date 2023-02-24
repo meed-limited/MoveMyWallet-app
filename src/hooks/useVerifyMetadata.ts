@@ -23,11 +23,7 @@ export const useVerifyMetadata = () => {
         }
 
         try {
-            const res = await fetch(nft.token_uri, {
-                headers: {
-                    "Access-Control-Allow-Origin": "*", // Add CORS headers
-                },
-            });
+            const res = await fetch(nft.token_uri);
             const metadata = await res.json();
             if (!metadata) {
                 console.error("No Metadata found on URI:", { URI: nft.token_uri, nft });
@@ -43,6 +39,12 @@ export const useVerifyMetadata = () => {
         nft.metadata = metadata;
         nft.image = metadata.image ? resolveLink(metadata.image) : nft.image;
         nft.name = metadata.name || nft.name;
+
+        if (nft.image.includes("https://ipfs.moralis.io:2053/")) {
+            const img = nft.image.replace("https://ipfs.moralis.io:2053/", "https://cloudflare-ipfs.com/");
+            nft.image = img;
+        }
+
         setResults({ ...results, [nft.token_uri]: nft });
     };
 
