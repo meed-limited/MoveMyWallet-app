@@ -42,11 +42,11 @@ export const useWeb3Data = (): Web3Data => {
     }, [address, chain, fetchMoralisData]);
 
     useEffect(() => {
-        if (address && chain) {
+        if (address && chain?.id) {
             syncWeb3();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [address, chain]);
+    }, [address, chain?.id]);
 
     return {
         balances,
