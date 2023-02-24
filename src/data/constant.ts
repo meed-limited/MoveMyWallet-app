@@ -5,7 +5,8 @@ export const isProdEnv = process.env.NEXT_PUBLIC_NODE_ENV === "production" ? tru
 export const MAX_INT = BigNumber.from(Number.MAX_SAFE_INTEGER - 1);
 
 // export const URL = "http://localhost:3000/";
-export const URL = isProdEnv ? "https://app.movemywallet.com/" : "http://localhost:3000/";
+// export const URL = isProdEnv ? "https://app.movemywallet.com/" : "http://localhost:3000/";
+export const URL = "https://app.movemywallet.com/";
 
 export const SUPPORTED_CHAIN = {
     mainnet: [1, 56, 137],
