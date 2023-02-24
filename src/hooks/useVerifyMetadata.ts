@@ -23,7 +23,11 @@ export const useVerifyMetadata = () => {
         }
 
         try {
-            const res = await fetch(nft.token_uri);
+            const res = await fetch(nft.token_uri, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*", // Add CORS headers
+                },
+            });
             const metadata = await res.json();
             if (!metadata) {
                 console.error("No Metadata found on URI:", { URI: nft.token_uri, nft });
