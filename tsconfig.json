@@ -24,7 +24,6 @@
         "types/index.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        "src/hooks/useVerifyMetadata.ts.OLDER"
     ],
     "exclude": [
         "node_modules",
