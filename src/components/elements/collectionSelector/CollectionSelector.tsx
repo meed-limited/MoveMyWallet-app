@@ -39,7 +39,7 @@ const CollectionSelector: FC<CollectionSelectorProps> = ({ setNftsDisplayed }) =
     };
 
     return (
-        <Dropdown menu={{ items, onClick }}>
+        <Dropdown menu={{ items, onClick }} trigger={["click"]}>
             <Button className={styles.button}>
                 {!selected ? (
                     <span className={styles.selectorTitle}>Select Collections</span>
