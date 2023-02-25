@@ -56,6 +56,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             chain: moralisChain,
             tokenAddresses: [collection],
             disableTotal: false,
+            normalizeMetadata: true,
         });
 
         let nfts: any[] = [];

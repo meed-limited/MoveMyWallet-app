@@ -8,7 +8,6 @@ export * from "./useFetchCollectionNFTs";
 export * from "./useSignerOrProvider";
 export * from "./useSpamFilter";
 export * from "./useSupportedChains";
-export * from "./useVerifyMetadata";
 export * from "./useWindowWidthAndHeight";
 export * from "./useReadContract";
 export * from "./useWriteContract";

@@ -1,15 +1,15 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useState } from "react";
 
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
 
 import styles from "./CollectionSelector.module.css";
 import { useUserData } from "../../../context/UserContextProvider";
-import { useFetchCollectionNFTs, useVerifyMetadata } from "../../../hooks";
+import { useFetchCollectionNFTs, useIPFS } from "../../../hooks";
 
 const CollectionSelector: FC<CollectionSelectorProps> = ({ setNftsDisplayed }) => {
     const { address, chainId, collections, userNFTs } = useUserData();
-    const { verifyMetadata } = useVerifyMetadata();
+    const { resolveLink } = useIPFS();
     const { fetchNFTs } = useFetchCollectionNFTs();
 
     const [selected, setSelected] = useState<MenuItem>();
@@ -18,8 +18,8 @@ const CollectionSelector: FC<CollectionSelectorProps> = ({ setNftsDisplayed }) =
     const IconToShow = (collec: string) => {
         const randomNft = userNFTs.nfts.find((item) => item.token_address.toLowerCase() === collec.toLowerCase());
         if (randomNft) {
-            const metadata = verifyMetadata(randomNft);
-            return <img className={styles.thumbnail} src={metadata.image} />;
+            const nft = resolveLink(randomNft);
+            return <img className={styles.thumbnail} src={nft.image} alt={nft.name ?? "nft_image"} />;
         } else return <>Loading...</>;
     };
 

@@ -157,6 +157,7 @@ type NFTinDB = {
     last_metadata_sync: string;
     last_token_uri_sync: string;
     metadata: NftMetadata;
+    normalized_metadata: any;
     objectId?: string;
     owner: string;
     name: string;

@@ -39,7 +39,7 @@ export const useWeb3Data = (): Web3Data => {
             fetchMoralisData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [address, chain, fetchMoralisData]);
+    }, [address, chain]);
 
     useEffect(() => {
         if (address && chain?.id) {

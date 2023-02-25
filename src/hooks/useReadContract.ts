@@ -26,7 +26,7 @@ export const useReadContract = () => {
             const allowance = await tokenInstance.allowance(address, mmw);
             return allowance;
         } catch (error: any) {
-            console.log(error.reason ? error.reason : error.message);
+            console.error(error.reason ?? error.message);
             return 0;
         }
     };
@@ -42,7 +42,7 @@ export const useReadContract = () => {
             const allowance = await nftInstance.isApprovedForAll(address, mmw);
             return allowance;
         } catch (error: any) {
-            console.log(error.reason ? error.reason : error.message);
+            console.error(error.reason ?? error.message);
             return false;
         }
     };

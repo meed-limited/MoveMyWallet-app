@@ -11,6 +11,11 @@ const nextConfig = {
                 hostname: "cloudflare-ipfs.com",
                 port: "",
             },
+            {
+                protocol: "https",
+                hostname: "ipfs.moralis.io:2053",
+                port: "",
+            },
         ],
     },
 };

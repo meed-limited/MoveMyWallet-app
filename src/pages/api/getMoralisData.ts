@@ -55,11 +55,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             address: account,
             chain: moralisChain,
             disableTotal: false,
+            normalizeMetadata: true,
         });
 
         let nfts: any[] = [];
         const nfts_1 = tx.raw.result;
         const total = tx.raw.total;
+
         nfts.push(nfts_1);
         nfts.flat();
 

@@ -98,7 +98,7 @@ export const useWriteContract = () => {
                 };
             }
         } catch (error: any) {
-            console.error(error);
+            console.error(error.reason);
             const title = "Unexpected error";
             const msg = `Oops, something went wrong while bundling your assets. \n 
             Reason: ${error.reason}`;
