@@ -5,13 +5,13 @@ export const ethereum: Chain = {
     name: "Ethereum",
     network: "Ethereum",
     nativeCurrency: {
-        decimals: 18,
         name: "ETH",
         symbol: "ETH",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://ethereum.publicnode.com"] },
+        public: { http: ["https://cloudflare-eth.com"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://etherscan.io/" },
@@ -24,13 +24,13 @@ export const goerli: Chain = {
     name: "Goerli",
     network: "Goerli",
     nativeCurrency: {
-        decimals: 18,
         name: "ETH",
         symbol: "ETH",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://goerli.blockpi.network/v1/rpc/public"] },
+        public: { http: ["https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://goerli.etherscan.io/" },
@@ -43,13 +43,13 @@ export const bnb: Chain = {
     name: "BNB_Chain",
     network: "BNB_Chain",
     nativeCurrency: {
-        decimals: 18,
         name: "BNB",
         symbol: "BNB",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://bsc-dataseed1.binance.org"] },
+        public: { http: ["https://bsc-dataseed.binance.org"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://bscscan.com/" },
@@ -62,13 +62,13 @@ export const bnb_test: Chain = {
     name: "BNB_Testnet",
     network: "BNB_Testnet",
     nativeCurrency: {
-        decimals: 18,
         name: "BNB",
         symbol: "BNB",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://data-seed-prebsc-2-s1.binance.org:8545"] },
+        public: { http: ["https://data-seed-prebsc-1-s1.binance.org:8545"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://testnet.bscscan.com/" },
@@ -81,13 +81,13 @@ export const polygon: Chain = {
     name: "Polygon network",
     network: "Polygon",
     nativeCurrency: {
-        decimals: 18,
         name: "MATIC",
         symbol: "MATIC",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://polygon-rpc.com"] },
+        public: { http: ["https://poly-rpc.gateway.pokt.network"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://polygonscan.com/" },
@@ -100,16 +100,18 @@ export const mumbai: Chain = {
     name: "Mumbai Testnet",
     network: "Mumbai",
     nativeCurrency: {
-        decimals: 18,
         name: "MATIC",
         symbol: "MATIC",
+        decimals: 18,
     },
     rpcUrls: {
-        default: { http: [""] },
-        public: { http: [""] },
+        default: { http: ["https://rpc.ankr.com/polygon_mumbai"] },
+        public: { http: ["https://rpc-mumbai.maticvigil.com"] },
     },
     blockExplorers: {
         default: { name: "", url: "https://mumbai.polygonscan.com/" },
     },
     testnet: true,
 };
+
+export const networks = [ethereum, goerli, bnb, bnb_test, polygon, mumbai];

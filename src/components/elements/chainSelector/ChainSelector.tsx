@@ -7,6 +7,7 @@ import styles from "./ChainSelector.module.css";
 import { ETHLogo, BSCLogo, PolygonLogo } from "./Logos";
 import { useUserData } from "../../../context/UserContextProvider";
 import { isProdEnv } from "../../../data/constant";
+import { networks } from "../../../data/networks";
 
 const IconToShow = (element: JSX.Element) => {
     return <div className={styles.iconeToShow}>{element}</div>;
@@ -49,16 +50,36 @@ const ChainSelector: FC = () => {
     }, [chainId]);
 
     const onClick: MenuProps["onClick"] = async ({ key }) => {
-        try {
-            if (window.ethereum) {
+        if (window.ethereum) {
+            try {
                 await window.ethereum.request({
                     method: "wallet_switchEthereumChain",
                     params: [{ chainId: key }],
                 });
                 window.location.reload();
+            } catch (error: any) {
+                if (error.code === 4902) {
+                    try {
+                        const chainId = parseInt(key, 16);
+                        const chain = networks.find((network) => network.id === chainId);
+                        const chainToAdd: AddEthereumChainParameter = {
+                            chainId: key,
+                            chainName: chain!.name,
+                            nativeCurrency: chain!.nativeCurrency,
+                            rpcUrls: [chain!.rpcUrls.default.http, chain!.rpcUrls.public.http].flat(),
+                            blockExplorerUrls: [chain!.blockExplorers!.default.url ?? undefined],
+                        };
+
+                        await window.ethereum.request({
+                            method: "wallet_addEthereumChain",
+                            params: [{ ...chainToAdd }],
+                        });
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+                console.error(error);
             }
-        } catch (e) {
-            console.error(e);
         }
     };
 

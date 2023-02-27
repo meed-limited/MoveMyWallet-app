@@ -1,5 +1,5 @@
 import { FileSearchOutlined } from "@ant-design/icons";
-import { BigNumber, providers, Contract, utils } from "ethers";
+import { BigNumber, providers, Contract } from "ethers";
 
 import { MoveMyWallet } from "../../types/MoveMyWallet";
 import { useUserData } from "../context/UserContextProvider";
