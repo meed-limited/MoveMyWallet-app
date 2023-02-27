@@ -13,7 +13,7 @@ const Done: FC<DoneProps> = ({ address, onReset }) => {
                 Your assets have been succesfully transferred to:<br></br>
                 <span style={{ fontWeight: "600", color: "blue" }}>{address}</span>.<br></br>
             </p>
-            <p className={styles.text}>Thank you for using Lepricon product.</p>
+            <p className={styles.text}>Thank you for using SuperUltra products.</p>
             <Divider style={{ marginBlock: "40px" }} />
             <Button className={styles.resetButton} shape="round" onClick={onReset}>
                 Restart
