@@ -3,9 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import BundleSchema from "../../data/models/bundleSchema";
 import { connectToDb, disconnectFromDb } from "../../utils/connectToMongoDb";
 
-const mongodbUri = process.env.MONGODB_URI;
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+    const mongodbUri = process.env.MONGODB_URI;
+
     try {
         console.log(`RETRIEVING BUNDLE IN MONGO DB, IF ANY...`);
         const { address }: { address: string } = req.body;

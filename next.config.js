@@ -18,6 +18,10 @@ const nextConfig = {
             },
         ],
     },
+    env: {
+        MONGODB_COLLECTION: process.env.MONGODB_COLLECTION,
+        MONGODB_COLLECTION_TEST: process.env.MONGODB_COLLECTION_TEST,
+    },
 };
 
 module.exports = nextConfig;
