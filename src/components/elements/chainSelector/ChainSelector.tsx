@@ -64,10 +64,10 @@ const ChainSelector: FC = () => {
                         const chain = networks.find((network) => network.id === chainId);
                         const chainToAdd: AddEthereumChainParameter = {
                             chainId: key,
-                            chainName: chain!.name,
-                            nativeCurrency: chain!.nativeCurrency,
-                            rpcUrls: [chain!.rpcUrls.default.http, chain!.rpcUrls.public.http].flat(),
-                            blockExplorerUrls: [chain!.blockExplorers!.default.url ?? undefined],
+                            chainName: chain?.name,
+                            nativeCurrency: chain?.nativeCurrency,
+                            rpcUrls: [chain?.rpcUrls.default.http, chain?.rpcUrls.public.http].flat(),
+                            blockExplorerUrls: [chain?.blockExplorers?.default.url],
                         };
 
                         await window.ethereum.request({
