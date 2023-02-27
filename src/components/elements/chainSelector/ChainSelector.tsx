@@ -70,7 +70,7 @@ const ChainSelector: FC = () => {
                             blockExplorerUrls: [chain?.blockExplorers?.default.url],
                         };
 
-                        await window.ethereum.request({
+                        await (window as any).ethereum.request({
                             method: "wallet_addEthereumChain",
                             params: [{ ...chainToAdd }],
                         });
