@@ -1,3 +1,5 @@
+import { BigNumber, utils } from "ethers";
+
 /**
  * Returns a string of form "abc...xyz"
  * @param {string} str string to string
@@ -13,4 +15,9 @@ export const getEllipsisTxt = (str: string, n = 6) => {
 
 export const toHexString = (num: number): string => {
     return "0x" + num.toString(16);
+};
+
+export const formatBigNumber = (num: number): BigNumber => {
+    const test = num / 10 ** 18;
+    return utils.parseUnits(test.toString(), 18);
 };

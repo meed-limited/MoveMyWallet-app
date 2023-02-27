@@ -224,7 +224,7 @@ interface DisplayNFTProps {
 
 interface BundleArrays {
     addressesArray: string[];
-    numbersArray: (number | string)[];
+    numbersArray: (number | string | BigNumber)[];
 }
 
 interface AssemblyEventData {

@@ -18,13 +18,11 @@ export const useWriteContract = () => {
 
     /* Set Token Allowance:
      ***************************/
-    const approveToken = async (token: string, allowance: string | number | BigNumber) => {
+    const approveToken = async (token: string, allowance: BigNumber) => {
         const tokenInstance = new Contract(token, ERC20_ABI, signer) as MoveMyWallet;
 
-        const allowanceToBn = utils.parseUnits(allowance.toString(), 18);
-
         try {
-            const tx = await tokenInstance.approve(mmw, allowanceToBn);
+            const tx = await tokenInstance.approve(mmw, allowance);
             await tx.wait(2);
             const value = parseInt(allowance.toString()) / 10 ** 18;
             const title = "Token Approval set";
