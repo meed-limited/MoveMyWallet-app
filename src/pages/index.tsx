@@ -11,11 +11,11 @@ const MainPage: NextPage = () => {
                 <title>Move My Wallet</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-                <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-                <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-                <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
-                <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+                <link rel="shortcut icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
             </Head>
 
             <HeaderPage />
