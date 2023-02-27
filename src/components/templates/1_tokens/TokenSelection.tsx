@@ -50,9 +50,10 @@ const TokenSelection: FC<TokenProps> = ({ tokensToTransfer, setTokensToTransfer 
     };
 
     const renderItem: RenderItem = (item) => {
+        const decimals = item.decimals;
         const tokenLine = (
             <div className={styles.tokenInputLine}>
-                <p>{item.balance / 10 ** 18}</p>
+                <p>{item.balance / 10 ** decimals}</p>
                 <p>{item.symbol}</p>
             </div>
         );

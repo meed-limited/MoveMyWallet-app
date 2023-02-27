@@ -16,7 +16,7 @@ export function useMultipleApprovals() {
                     const toAllow = numbers[i + 4] as BigNumber;
                     const currentAllowance = await checkTokenAllowance(addresses[i]);
 
-                    if (parseInt(currentAllowance.toString()) < parseInt(toAllow.toString())) {
+                    if (Number(currentAllowance) < Number(toAllow)) {
                         await approveToken(addresses[i], toAllow);
                     }
                 } else {

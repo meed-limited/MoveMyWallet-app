@@ -16,7 +16,7 @@ export const sortArrayForBundle = (tokens: Token[], NFTs: NFTinDB[]): BundleArra
         ERC20s.length,
         ERC721s.length,
         ERC1155s.length,
-        ...ERC20s.map((token) => formatBigNumber(token.balance)),
+        ...ERC20s.map((token) => formatBigNumber(token.balance, token.decimals)),
         ...ERC721s.map((nft) => nft.token_id),
         ...ERC1155s.map((nft) => nft.token_id),
         ...ERC1155s.map((nft) => nft.amount || 0),
